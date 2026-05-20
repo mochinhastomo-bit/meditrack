@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicTrackingController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => redirect()->route('login'));
+Route::get('/', fn() => view('landing'))->name('home');
 
 // ===== PUBLIK — Tracking tanpa login =====
 Route::prefix('track')->name('track.')->group(function () {
