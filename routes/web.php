@@ -56,7 +56,8 @@ Route::middleware(['auth', 'role:farmasi'])->prefix('farmasi')->name('farmasi.')
     Route::resource('patients', PatientController::class)->except(['create', 'edit']);
     Route::resource('patients.addresses', PatientAddressController::class)->except(['create', 'edit']);
 
-    Route::get('couriers', [CourierController::class, 'index'])->name('couriers.index');
+    Route::resource('couriers', CourierController::class)->except(['create', 'edit']);
+    Route::get('couriers/available-users', [CourierController::class, 'availableUsers'])->name('couriers.available-users');
 });
 
 // ===== PROFILE =====

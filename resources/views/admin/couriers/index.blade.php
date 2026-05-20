@@ -186,6 +186,7 @@
 
 @push('scripts')
 <script>
+const BASE_URL = '{{ url(request()->is("farmasi/*") ? "farmasi/couriers" : "admin/couriers") }}';
 let table, deleteTargetId = null;
 
 // ===== DATATABLE =====
@@ -271,7 +272,7 @@ function switchMode(mode) {
 
 function loadAvailableUsers(selectedId = null) {
     const courierId = $('#courierId').val();
-    const url = `/admin/couriers/available-users${courierId ? `?exclude=${courierId}` : ''}`;
+    const url = `${BASE_URL}/available-users${courierId ? `?exclude=${courierId}` : ''}`;
     $.get(url, function (users) {
         const $s = $('#user_id');
         $s.html('<option value="">— Pilih akun —</option>');
@@ -309,7 +310,7 @@ function openEditModal(id) {
     $('#courierId').val(id);
     $('#statusField').removeClass('hidden');
 
-    $.get(`/admin/couriers/${id}`, function (c) {
+    $.get(`${BASE_URL}/${id}`, function (c) {
         $('#nik').val(c.nik);
         $('#name').val(c.name);
         $('#plate_number').val(c.plate_number);
@@ -335,7 +336,7 @@ function closeModal() { $('#courierModal').addClass('hidden').removeClass('flex'
 function submitForm() {
     clearErrors();
     const id   = $('#courierId').val();
-    const url  = id ? `/admin/couriers/${id}` : '/admin/couriers';
+    const url  = id ? `${BASE_URL}/${id}` : BASE_URL;
     const mode = $('input[name="account_mode"]:checked').val();
 
     const data = {
@@ -378,7 +379,7 @@ function closeDeleteModal() { deleteTargetId = null; $('#deleteModal').addClass(
 function confirmDelete() {
     if (!deleteTargetId) return;
     $('#confirmDeleteBtn').text('Menghapus...').prop('disabled', true);
-    $.ajax({ url: `/admin/couriers/${deleteTargetId}`, method: 'POST', data: { _method: 'DELETE' },
+    $.ajax({ url: `${BASE_URL}/${deleteTargetId}`, method: 'POST', data: { _method: 'DELETE' },
         success: res => { closeDeleteModal(); table.ajax.reload(null, false); toastr.success(res.message, 'Berhasil!'); },
         error: xhr => toastr.error(xhr.responseJSON?.message ?? 'Gagal.', 'Error'),
         complete: () => $('#confirmDeleteBtn').text('Ya, Hapus').prop('disabled', false),
