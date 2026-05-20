@@ -15,18 +15,20 @@
     <style>
         * { font-family: 'Google Sans', 'Roboto', sans-serif; }
         body { background: #f8f9fa; color: #202124; }
-        .topbar { background:#fff; border-bottom:1px solid #e0e0e0; height:64px; display:flex; align-items:center; padding:0 24px; position:fixed; top:0; left:0; right:0; z-index:100; gap:16px; }
-        .topbar-logo { display:flex; align-items:center; gap:10px; text-decoration:none; min-width:220px; }
+        .topbar { background:#fff; border-bottom:1px solid #e0e0e0; height:64px; display:flex; align-items:center; padding:0 16px; position:fixed; top:0; left:0; right:0; z-index:100; gap:12px; }
+        .topbar-logo { display:flex; align-items:center; gap:10px; text-decoration:none; min-width:auto; }
+        .topbar-hamburger { display:none; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:none; background:none; cursor:pointer; color:#5f6368; flex-shrink:0; }
+        .topbar-hamburger:hover { background:#f1f3f4; }
         .topbar-logo .logo-name { font-size:18px; font-weight:500; color:#202124; }
         .topbar-logo .logo-name span { color:#1a73e8; }
         .topbar-divider { width:1px; height:28px; background:#e0e0e0; margin:0 4px; }
         .topbar-breadcrumb { font-size:14px; color:#5f6368; display:flex; align-items:center; gap:4px; }
         .topbar-breadcrumb .page-title { color:#202124; font-weight:500; }
         .topbar-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
-        .topbar-icon-btn { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; cursor:pointer; color:#5f6368; transition:background 0.15s; }
-        .topbar-icon-btn:hover { background:#f1f3f4; }
         .user-avatar { width:36px; height:36px; border-radius:50%; background:#1a73e8; color:white; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:500; cursor:pointer; }
-        .sidebar { background:#fff; border-right:1px solid #e0e0e0; width:256px; position:fixed; top:64px; left:0; bottom:0; display:flex; flex-direction:column; overflow-y:auto; z-index:90; }
+        .sidebar { background:#fff; border-right:1px solid #e0e0e0; width:256px; position:fixed; top:64px; left:0; bottom:0; display:flex; flex-direction:column; overflow-y:auto; z-index:90; transition:transform .25s ease; }
+        .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.35); z-index:89; }
+        .sidebar-overlay.active { display:block; }
         .sidebar-section-title { font-size:11px; font-weight:500; color:#80868b; letter-spacing:0.8px; text-transform:uppercase; padding:16px 16px 4px 16px; }
         .nav-item { display:flex; align-items:center; gap:12px; padding:0 12px; height:40px; border-radius:0 20px 20px 0; margin:2px 8px 2px 0; font-size:14px; font-weight:400; color:#3c4043; text-decoration:none; cursor:pointer; transition:background 0.15s; }
         .nav-item:hover { background:#f1f3f4; }
@@ -40,6 +42,15 @@
         .logout-btn:hover { background:#fce8e6; }
         .logout-btn .material-icons { font-size:18px; }
         .main-content { margin-left:256px; margin-top:64px; min-height:calc(100vh - 64px); padding:24px; }
+        @media (max-width: 768px) {
+            .topbar-hamburger { display:flex; }
+            .topbar-logo img { height:28px; }
+            .topbar-divider { display:none; }
+            .topbar-breadcrumb { font-size:13px; }
+            .sidebar { transform:translateX(-100%); top:64px; }
+            .sidebar.open { transform:translateX(0); }
+            .main-content { margin-left:0; padding:16px; }
+        }
         .card { background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:20px 24px; }
         .btn-primary { background:#1a73e8; color:#fff; border:none; border-radius:4px; padding:8px 16px; font-size:14px; font-weight:500; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:background 0.15s; font-family:'Google Sans',sans-serif; }
         .btn-primary:hover { background:#1557b0; }
@@ -93,6 +104,9 @@
 <body>
 
 <header class="topbar">
+    <button class="topbar-hamburger" id="sidebarToggle" aria-label="Menu">
+        <span class="material-icons">menu</span>
+    </button>
     <a href="{{ auth()->user()->isSuperAdmin() ? route('admin.dashboard') : route('farmasi.dashboard') }}" class="topbar-logo">
         
         <img src="{{ asset('logo.png') }}" alt="MediTrack" style="height:36px; width:auto; object-fit:contain;">
@@ -103,13 +117,12 @@
         <span class="page-title">@yield('title', 'Dashboard')</span>
     </div>
     <div class="topbar-right">
-        <div class="topbar-icon-btn"><span class="material-icons" style="font-size:22px;">notifications_none</span></div>
-        <div class="topbar-icon-btn"><span class="material-icons" style="font-size:22px;">help_outline</span></div>
         <div class="user-avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
     </div>
 </header>
 
-<aside class="sidebar">
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<aside class="sidebar" id="sidebar">
     <nav style="padding:8px 0; flex:1;">
         @if(auth()->user()->isSuperAdmin())
             <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -138,6 +151,14 @@
             <div class="sidebar-section-title">Operasional</div>
             <a href="{{ route('farmasi.prescriptions.index') }}" class="nav-item {{ request()->routeIs('farmasi.prescriptions*') ? 'active' : '' }}">
                 <span class="material-icons">receipt_long</span> Catatan Resep
+            </a>
+
+            <div class="sidebar-section-title">Data</div>
+            <a href="{{ route('farmasi.patients.index') }}" class="nav-item {{ request()->routeIs('farmasi.patients*') ? 'active' : '' }}">
+                <span class="material-icons">personal_injury</span> Data Pasien
+            </a>
+            <a href="{{ route('farmasi.couriers.index') }}" class="nav-item {{ request()->routeIs('farmasi.couriers*') ? 'active' : '' }}">
+                <span class="material-icons">delivery_dining</span> Data Kurir
             </a>
         @endif
     </nav>
@@ -169,5 +190,18 @@
     toastr.options = { closeButton:true, progressBar:true, positionClass:'toast-top-right', timeOut:3500 };
 </script>
 @stack('scripts')
+<script>
+    (function() {
+        const toggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        function close() { sidebar.classList.remove('open'); overlay.classList.remove('active'); }
+        toggle.addEventListener('click', function() {
+            const isOpen = sidebar.classList.toggle('open');
+            overlay.classList.toggle('active', isOpen);
+        });
+        overlay.addEventListener('click', close);
+    })();
+</script>
 </body>
 </html>

@@ -226,6 +226,7 @@
 </script>
 
 <script>
+const BASE_URL = '{{ url(request()->is("farmasi/*") ? "farmasi/patients" : "admin/patients") }}';
 let table, addrTable, deleteTargetId = null;
 let currentPatientId = null;
 let map, marker, geocoder, searchBox, placesService;
@@ -235,7 +236,7 @@ let mapInitialized = false;
 $(document).ready(function () {
     table = $('#patientsTable').DataTable({
         processing: true,
-        ajax: { url: '{{ route("admin.patients.index") }}', headers: { 'Accept': 'application/json' }, dataSrc: 'data' },
+        ajax: { url: '{{ request()->url() }}', headers: { 'Accept': 'application/json' }, dataSrc: 'data' },
         columns: [
             { data: 'nik' },
             { data: 'rm' },
@@ -381,11 +382,11 @@ function openEditModal(id) {
     $('#modalTitle').text('Edit Pasien');
     $('#patientId').val(id);
     $('#statusFieldPatient').removeClass('hidden');
-    $.get(`/admin/patients/${id}`, function (p) {
+    $.get(`${BASE_URL}/${id}`, function (p) {
         $('#nik').val(p.nik);
         $('#rm').val(p.rm);
         $('#name').val(p.name);
-        $('#birth_date').val(p.birth_date);
+        $('#birth_date').val(p.birth_date ? p.birth_date.substring(0, 10) : '');
         $('#phone').val(p.phone);
         $('#is_active').val(p.is_active ? '1' : '0');
         $('#patientModal').removeClass('hidden').addClass('flex');
@@ -397,7 +398,7 @@ function closeModal() { $('#patientModal').addClass('hidden').removeClass('flex'
 function submitPatient() {
     clearErrors();
     const id  = $('#patientId').val();
-    const url = id ? `/admin/patients/${id}` : '/admin/patients';
+    const url = id ? `${BASE_URL}/${id}` : BASE_URL;
     const data = {
         _method: id ? 'PATCH' : 'POST',
         nik: $('#nik').val(), rm: $('#rm').val(), name: $('#name').val(),
@@ -438,7 +439,7 @@ function loadAddressTable() {
     if (addrTable) { addrTable.destroy(); addrTable = null; }
     addrTable = $('#addressTable').DataTable({
         processing: true,
-        ajax: { url: `/admin/patients/${currentPatientId}/addresses`, headers: { 'Accept': 'application/json' }, dataSrc: 'data' },
+        ajax: { url: `${BASE_URL}/${currentPatientId}/addresses`, headers: { 'Accept': 'application/json' }, dataSrc: 'data' },
         columns: [
             { data: 'label', render: d => `<span class="px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-700 font-medium">${d}</span>` },
             { data: 'address', render: d => `<span class="text-xs text-gray-600">${d}</span>` },
@@ -468,7 +469,7 @@ function openAddressForm() {
 }
 
 function editAddress(id) {
-    $.get(`/admin/patients/${currentPatientId}/addresses/${id}`, function (a) {
+    $.get(`${BASE_URL}/${currentPatientId}/addresses/${id}`, function (a) {
         $('#addressFormTitle').text('Edit Alamat');
         $('#addressId').val(a.id);
         $('#addr_label').val(a.label);
@@ -495,8 +496,8 @@ function submitAddress() {
     clearAddressErrors();
     const id  = $('#addressId').val();
     const url = id
-        ? `/admin/patients/${currentPatientId}/addresses/${id}`
-        : `/admin/patients/${currentPatientId}/addresses`;
+        ? `${BASE_URL}/${currentPatientId}/addresses/${id}`
+        : `${BASE_URL}/${currentPatientId}/addresses`;
     const data = {
         _method:    id ? 'PATCH' : 'POST',
         label:      $('#addr_label').val(),
@@ -520,7 +521,7 @@ function submitAddress() {
 
 function deleteAddress(id) {
     if (!confirm('Hapus alamat ini?')) return;
-    $.ajax({ url: `/admin/patients/${currentPatientId}/addresses/${id}`, method: 'POST', data: { _method: 'DELETE' },
+    $.ajax({ url: `${BASE_URL}/${currentPatientId}/addresses/${id}`, method: 'POST', data: { _method: 'DELETE' },
         success: res => { loadAddressTable(); toastr.success(res.message, 'Berhasil!'); },
         error: () => toastr.error('Gagal menghapus alamat.', 'Error'),
     });
@@ -536,7 +537,7 @@ function closeDeleteModal() { deleteTargetId = null; $('#deleteModal').addClass(
 function confirmDelete() {
     if (!deleteTargetId) return;
     $('#confirmDeleteBtn').text('Menghapus...').prop('disabled', true);
-    $.ajax({ url: `/admin/patients/${deleteTargetId}`, method: 'POST', data: { _method: 'DELETE' },
+    $.ajax({ url: `${BASE_URL}/${deleteTargetId}`, method: 'POST', data: { _method: 'DELETE' },
         success: res => { closeDeleteModal(); table.ajax.reload(null, false); toastr.success(res.message, 'Berhasil!'); },
         error: xhr => toastr.error(xhr.responseJSON?.message ?? 'Gagal.', 'Error'),
         complete: () => $('#confirmDeleteBtn').text('Ya, Hapus').prop('disabled', false),

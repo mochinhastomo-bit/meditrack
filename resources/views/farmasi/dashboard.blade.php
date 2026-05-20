@@ -146,13 +146,42 @@
     }
     .kanban-card-compact.expanded .compact-chevron { transform: rotate(180deg); }
     .card-hidden { display: none !important; }
+    .stat-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .kanban-board-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+    }
+    @media (max-width: 768px) {
+        .stat-cards-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .kanban-board-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .kanban-col {
+            max-height: none;
+            min-height: 200px;
+        }
+    }
+    @media (max-width: 480px) {
+        .stat-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 </style>
 @endpush
 
 @section('content')
 
 {{-- ── Stat Cards ───────────────────────────────────────────────────────── --}}
-<div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px;">
+<div class="stat-cards-grid">
 
     <div class="card" style="border-top:3px solid #1a73e8; padding:12px 16px;">
         <div style="font-size:11px;color:#5f6368;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">
@@ -196,7 +225,7 @@
 </div>
 
 {{-- ── Kanban Board ─────────────────────────────────────────────────────── --}}
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+<div class="kanban-board-grid">
 
     {{-- ════ KOLOM 1 : PENYIAPAN ════ --}}
     <div class="kanban-col">

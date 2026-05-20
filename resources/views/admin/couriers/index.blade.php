@@ -192,7 +192,7 @@ let table, deleteTargetId = null;
 $(document).ready(function () {
     table = $('#couriersTable').DataTable({
         processing: true,
-        ajax: { url: '{{ route("admin.couriers.index") }}', headers: { 'Accept': 'application/json' }, dataSrc: 'data' },
+        ajax: { url: '{{ request()->url() }}', headers: { 'Accept': 'application/json' }, dataSrc: 'data' },
         columns: [
             { data: 'nik', render: d => `<span style="font-family:monospace; font-size:13px;">${d}</span>` },
             { data: 'name', render: d => `<span style="font-weight:500;">${d}</span>` },

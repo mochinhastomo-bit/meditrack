@@ -1,10 +1,29 @@
 @extends('layouts.admin')
 @section('title', 'Dashboard')
 
+@push('styles')
+<style>
+    .admin-stat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px; }
+    .admin-status-grid { display:grid; grid-template-columns:1fr 320px; gap:16px; margin-bottom:20px; }
+    .admin-status-inner { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+    @media (max-width: 900px) {
+        .admin-status-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width: 768px) {
+        .admin-stat-grid { grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:14px; }
+        .admin-status-inner { grid-template-columns:repeat(3,1fr); }
+    }
+    @media (max-width: 480px) {
+        .admin-stat-grid { grid-template-columns:1fr 1fr; gap:8px; }
+        .admin-status-inner { grid-template-columns:repeat(2,1fr); }
+    }
+</style>
+@endpush
+
 @section('content')
 
 {{-- ── Stat Cards Row 1 ──────────────────────────────────────────────── --}}
-<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px;">
+<div class="admin-stat-grid">
 
     <div class="card" style="border-top:3px solid #1a73e8; padding:16px 20px;">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
@@ -55,7 +74,7 @@
 </div>
 
 {{-- ── Status Resep + Shortcut ──────────────────────────────────────── --}}
-<div style="display:grid; grid-template-columns:1fr 320px; gap:16px; margin-bottom:20px;">
+<div class="admin-status-grid">
 
     {{-- Status Cards --}}
     <div class="card">
@@ -63,7 +82,7 @@
             <span class="material-icons" style="color:#1a73e8;font-size:18px;">bar_chart</span>
             Distribusi Status Resep
         </div>
-        <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px;">
+        <div class="admin-status-inner">
             @foreach($statusData as $key => $sd)
             <a href="{{ route('admin.prescriptions.index') }}" style="text-decoration:none;">
                 <div style="text-align:center; padding:12px 8px; border-radius:8px; border:1px solid #e0e0e0; transition:background 0.15s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='#fff'">
