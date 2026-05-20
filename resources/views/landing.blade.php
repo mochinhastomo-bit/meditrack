@@ -39,62 +39,62 @@
             background: rgba(255,255,255,0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid #e8eaed;
-            padding: 0 24px;
+            padding: 0 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 64px;
+            height: 52px;
         }
-        .navbar-logo img { height: 36px; width: auto; }
+        .navbar-logo img { height: 28px; width: auto; }
         .navbar-login {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 14px;
+            gap: 5px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--blue);
             text-decoration: none;
-            padding: 8px 18px;
-            border: 2px solid var(--blue);
-            border-radius: 10px;
+            padding: 6px 14px;
+            border: 1.5px solid var(--blue);
+            border-radius: 8px;
             transition: background .2s, color .2s;
         }
         .navbar-login:hover { background: var(--blue); color: var(--white); }
 
         /* ── HERO ────────────────────────────────── */
         .hero {
-            padding: 72px 24px 80px;
+            padding: 40px 20px 44px;
             text-align: center;
-            max-width: 680px;
+            max-width: 600px;
             margin: 0 auto;
         }
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: var(--blue-lt);
             color: var(--blue);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            padding: 6px 14px;
+            padding: 4px 12px;
             border-radius: 99px;
-            margin-bottom: 28px;
+            margin-bottom: 16px;
         }
-        .hero-badge .material-icons-round { font-size: 16px; }
+        .hero-badge .material-icons-round { font-size: 14px; }
         .hero h1 {
-            font-size: clamp(28px, 5vw, 44px);
+            font-size: clamp(22px, 4vw, 32px);
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.25;
             color: var(--gray-1);
-            margin-bottom: 18px;
-            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
         .hero h1 span { color: var(--blue); }
         .hero p {
-            font-size: 16px;
+            font-size: 14px;
             color: var(--gray-3);
-            margin-bottom: 40px;
-            max-width: 500px;
+            margin-bottom: 24px;
+            max-width: 460px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -102,40 +102,40 @@
         /* ── FORM TRACKING ───────────────────────── */
         .track-form {
             background: var(--white);
-            border: 2px solid #e0e0e0;
-            border-radius: 20px;
-            padding: 28px 24px;
-            box-shadow: 0 8px 32px rgba(26,115,232,0.10);
-            max-width: 480px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 14px;
+            padding: 20px 18px;
+            box-shadow: 0 4px 20px rgba(26,115,232,0.09);
+            max-width: 440px;
             margin: 0 auto;
             text-align: left;
         }
         .track-form label {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--gray-2);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .input-wrap {
             position: relative;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
         .input-wrap .material-icons-round {
             position: absolute;
-            left: 14px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--gray-4);
-            font-size: 20px;
+            font-size: 18px;
             pointer-events: none;
         }
         .input-wrap input {
             width: 100%;
-            padding: 14px 14px 14px 44px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 15px;
+            padding: 11px 12px 11px 38px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
             font-family: 'Inter', sans-serif;
             color: var(--gray-1);
             outline: none;
@@ -151,85 +151,84 @@
         }
         .btn-track {
             width: 100%;
-            padding: 14px;
+            padding: 11px;
             background: var(--blue);
             color: var(--white);
             border: none;
-            border-radius: 12px;
-            font-size: 15px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             transition: background .2s, transform .1s;
         }
         .btn-track:hover  { background: var(--blue-dk); }
         .btn-track:active { transform: scale(0.98); }
-        .btn-track .material-icons-round { font-size: 20px; }
+        .btn-track .material-icons-round { font-size: 18px; }
 
         /* ── CARA KERJA ──────────────────────────── */
-        .section { padding: 72px 24px; }
+        .section { padding: 40px 20px; }
         .section-inner { max-width: 960px; margin: 0 auto; }
 
         .section-label {
             text-align: center;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--blue);
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
         }
         .section-title {
             text-align: center;
-            font-size: clamp(22px, 3.5vw, 32px);
+            font-size: clamp(18px, 3vw, 24px);
             font-weight: 700;
             color: var(--gray-1);
-            margin-bottom: 48px;
+            margin-bottom: 24px;
         }
 
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            position: relative;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
         }
         .step-card {
             text-align: center;
-            padding: 32px 20px;
-            border-radius: var(--radius);
+            padding: 20px 14px;
+            border-radius: 12px;
             background: var(--gray-5);
         }
         .step-number {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: var(--blue);
             color: var(--white);
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .step-icon {
             display: block;
-            font-size: 36px;
+            font-size: 26px;
             color: var(--blue);
-            margin-bottom: 16px;
-        }
-        .step-card h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--gray-1);
             margin-bottom: 8px;
         }
-        .step-card p {
+        .step-card h3 {
             font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-1);
+            margin-bottom: 5px;
+        }
+        .step-card p {
+            font-size: 12px;
             color: var(--gray-3);
             line-height: 1.5;
         }
@@ -238,75 +237,75 @@
         .features-bg { background: var(--blue-lt); }
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
         }
         .feature-card {
             background: var(--white);
-            border-radius: var(--radius);
-            padding: 28px 24px;
+            border-radius: 12px;
+            padding: 16px 16px;
             display: flex;
-            gap: 16px;
+            gap: 12px;
             align-items: flex-start;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 1px 6px rgba(0,0,0,0.05);
         }
         .feature-icon {
             flex-shrink: 0;
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             background: var(--blue-lt);
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .feature-icon .material-icons-round { color: var(--blue); font-size: 24px; }
+        .feature-icon .material-icons-round { color: var(--blue); font-size: 20px; }
         .feature-card h3 {
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--gray-1);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .feature-card p {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--gray-3);
             line-height: 1.5;
         }
 
         /* ── CTA BOTTOM ──────────────────────────── */
         .cta-section {
-            padding: 72px 24px;
+            padding: 40px 20px;
             text-align: center;
         }
         .cta-box {
-            max-width: 560px;
+            max-width: 500px;
             margin: 0 auto;
             background: var(--blue);
-            border-radius: 24px;
-            padding: 48px 32px;
+            border-radius: 16px;
+            padding: 32px 24px;
             color: var(--white);
         }
         .cta-box h2 {
-            font-size: clamp(20px, 3vw, 28px);
+            font-size: clamp(17px, 2.5vw, 22px);
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
         .cta-box p {
-            font-size: 15px;
+            font-size: 13px;
             opacity: 0.85;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
         .btn-cta {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: var(--white);
             color: var(--blue);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             font-family: 'Inter', sans-serif;
-            padding: 14px 28px;
-            border-radius: 12px;
+            padding: 11px 22px;
+            border-radius: 10px;
             border: none;
             cursor: pointer;
             text-decoration: none;
@@ -314,24 +313,24 @@
         }
         .btn-cta:hover  { opacity: 0.92; }
         .btn-cta:active { transform: scale(0.98); }
-        .btn-cta .material-icons-round { font-size: 20px; }
+        .btn-cta .material-icons-round { font-size: 18px; }
 
         /* ── FOOTER ──────────────────────────────── */
         .footer {
             background: var(--gray-1);
             color: rgba(255,255,255,0.6);
             text-align: center;
-            padding: 32px 24px;
-            font-size: 13px;
+            padding: 20px 20px;
+            font-size: 12px;
         }
         .footer strong { color: var(--white); }
-        .footer-divider { margin: 8px 0; }
+        .footer-divider { margin: 4px 0; }
 
         /* ── RESPONSIVE ──────────────────────────── */
         @media (max-width: 600px) {
-            .hero { padding: 48px 20px 56px; }
-            .section { padding: 52px 20px; }
-            .cta-box { padding: 36px 20px; }
+            .hero { padding: 28px 16px 32px; }
+            .section { padding: 28px 16px; }
+            .cta-box { padding: 24px 16px; }
         }
     </style>
 </head>
@@ -354,7 +353,6 @@
         <span class="material-icons-round">local_shipping</span>
         Lacak Pengiriman Obat Anda
     </div>
-    <h1>Pantau Status <span>Pengiriman Obat</span> Secara Real-Time</h1>
     <p>Masukkan kode resep dari struk pembelian Anda untuk mengetahui posisi kurir dan estimasi kedatangan obat.</p>
 
     <div class="track-form">
@@ -477,8 +475,8 @@
 {{-- CTA BOTTOM --}}
 <section class="cta-section">
     <div class="cta-box">
-        <h2>Punya Kode Resep?</h2>
-        <p>Lacak pengiriman obat Anda sekarang — cepat, mudah, tanpa perlu daftar akun.</p>
+        <h2>Pantau Status Pengiriman Obat Secara Real-Time</h2>
+        <p>Cepat, mudah, tanpa perlu daftar akun.</p>
         <a href="{{ route('track.index') }}" class="btn-cta">
             <span class="material-icons-round">search</span>
             Lacak Pengiriman
