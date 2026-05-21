@@ -84,9 +84,44 @@ class CourierApiController extends Controller
     }
 
     /**
+     * Ambil beberapa resep sekaligus dari RS (batch pickup).
+     * Mengubah status siap_kirim → dibawa untuk resep yang dipilih.
+     */
+    public function pickupOrders(Request $request)
+    {
+        $request->validate([
+            'order_ids'   => 'required|array|min:1',
+            'order_ids.*' => 'integer|exists:prescriptions,id',
+        ]);
+
+        $courier = $request->user()->courier;
+
+        if (! $courier) {
+            return response()->json(['message' => 'Data kurir tidak ditemukan.'], 404);
+        }
+
+        $prescriptions = Prescription::whereIn('id', $request->order_ids)
+            ->where('courier_id', $courier->id)
+            ->where('status', 'siap_kirim')
+            ->get();
+
+        if ($prescriptions->isEmpty()) {
+            return response()->json(['message' => 'Tidak ada resep yang valid untuk diambil.'], 422);
+        }
+
+        $prescriptions->each->update(['status' => 'dibawa']);
+
+        return response()->json([
+            'message' => "{$prescriptions->count()} resep berhasil diambil.",
+            'count'   => $prescriptions->count(),
+        ]);
+    }
+
+    /**
      * Update status resep oleh kurir.
      * Transisi yang diizinkan:
-     *   siap_kirim → dalam_pengiriman
+     *   siap_kirim       → dibawa (via pickupOrders)
+     *   dibawa           → dalam_pengiriman (hanya jika tidak ada yang aktif)
      *   dalam_pengiriman → terkirim
      */
     public function updateStatus(Request $request, Prescription $prescription)
@@ -98,7 +133,7 @@ class CourierApiController extends Controller
         }
 
         $allowed = [
-            'siap_kirim'       => 'dalam_pengiriman',
+            'dibawa'           => 'dalam_pengiriman',
             'dalam_pengiriman' => 'terkirim',
         ];
 
@@ -112,6 +147,21 @@ class CourierApiController extends Controller
         }
 
         $newStatus = $allowed[$current];
+
+        // Pastikan tidak ada pengiriman aktif lain sebelum mulai antar
+        if ($newStatus === 'dalam_pengiriman') {
+            $activeExists = Prescription::where('courier_id', $courier->id)
+                ->where('status', 'dalam_pengiriman')
+                ->where('id', '!=', $prescription->id)
+                ->exists();
+
+            if ($activeExists) {
+                return response()->json([
+                    'message' => 'Selesaikan pengiriman aktif terlebih dahulu sebelum memulai yang baru.',
+                ], 422);
+            }
+        }
+
         $prescription->update(['status' => $newStatus]);
 
         return response()->json([

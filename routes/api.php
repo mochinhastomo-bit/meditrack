@@ -29,8 +29,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/kurir/location', [CourierApiController::class, 'updateLocation']);
 
     // Orders
-    Route::get('/kurir/orders',              [CourierApiController::class, 'myOrders']);
-    Route::get('/kurir/orders/history',      [CourierApiController::class, 'orderHistory']);
+    Route::get('/kurir/orders',                         [CourierApiController::class, 'myOrders']);
+    Route::get('/kurir/orders/history',                 [CourierApiController::class, 'orderHistory']);
+    Route::post('/kurir/orders/pickup',                 [CourierApiController::class, 'pickupOrders']);
     Route::patch('/kurir/orders/{prescription}/status', [CourierApiController::class, 'updateStatus']);
 });
 

@@ -45,6 +45,7 @@ class Prescription extends Model
         return [
             'penyiapan'        => 'Proses Penyiapan Obat',
             'siap_kirim'       => 'Siap Kirim',
+            'dibawa'           => 'Dibawa Kurir',
             'dalam_pengiriman' => 'Dalam Pengiriman',
             'terkirim'         => 'Terkirim',
             'dibatalkan'       => 'Dibatalkan',
@@ -61,6 +62,7 @@ class Prescription extends Model
         return match($this->status) {
             'penyiapan'        => 'orange',
             'siap_kirim'       => 'blue',
+            'dibawa'           => 'teal',
             'dalam_pengiriman' => 'purple',
             'terkirim'         => 'green',
             'dibatalkan'       => 'red',
