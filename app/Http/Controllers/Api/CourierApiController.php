@@ -54,6 +54,39 @@ class CourierApiController extends Controller
     }
 
     /**
+     * Statistik pengiriman selesai kurir (hari ini & bulan ini).
+     */
+    public function stats(Request $request)
+    {
+        $courier = $request->user()->courier;
+
+        if (! $courier) {
+            return response()->json(['message' => 'Data kurir tidak ditemukan.'], 404);
+        }
+
+        $today = Prescription::where('courier_id', $courier->id)
+            ->where('status', 'terkirim')
+            ->whereDate('updated_at', today())
+            ->count();
+
+        $thisMonth = Prescription::where('courier_id', $courier->id)
+            ->where('status', 'terkirim')
+            ->whereMonth('updated_at', now()->month)
+            ->whereYear('updated_at', now()->year)
+            ->count();
+
+        $total = Prescription::where('courier_id', $courier->id)
+            ->where('status', 'terkirim')
+            ->count();
+
+        return response()->json([
+            'today'      => $today,
+            'this_month' => $thisMonth,
+            'total'      => $total,
+        ]);
+    }
+
+    /**
      * Update koordinat GPS kurir.
      */
     public function updateLocation(Request $request)

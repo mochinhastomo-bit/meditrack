@@ -28,6 +28,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // GPS
     Route::post('/kurir/location', [CourierApiController::class, 'updateLocation']);
 
+    // Stats
+    Route::get('/kurir/stats',                          [CourierApiController::class, 'stats']);
+
     // Orders
     Route::get('/kurir/orders',                         [CourierApiController::class, 'myOrders']);
     Route::get('/kurir/orders/history',                 [CourierApiController::class, 'orderHistory']);
