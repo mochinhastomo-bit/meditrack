@@ -153,6 +153,7 @@
         }
         .status-penyiapan        { background: #fef7e0; color: #b06000; }
         .status-siap_kirim       { background: #e8f0fe; color: #1557b0; }
+        .status-dibawa           { background: #ccfbf1; color: #0d6e64; }
         .status-dalam_pengiriman { background: #f3e8fd; color: #7627bb; }
         .status-terkirim         { background: #e6f4ea; color: #137333; }
         .status-dibatalkan       { background: #fce8e6; color: #c5221f; }
@@ -254,14 +255,15 @@
 <body>
 
 @php
-    $statusOrder = ['penyiapan', 'siap_kirim', 'dalam_pengiriman', 'terkirim'];
+    $statusOrder = ['penyiapan', 'siap_kirim', 'dibawa', 'dalam_pengiriman', 'terkirim'];
     $currentIdx  = array_search($prescription->status, $statusOrder);
     if ($currentIdx === false) $currentIdx = -1;
 
-    $stepIcons   = ['science', 'inventory_2', 'delivery_dining', 'check_circle'];
-    $stepLabels  = ['Penyiapan', 'Siap Kirim', 'Dikirim', 'Terkirim'];
+    $stepIcons   = ['science', 'inventory_2', 'inventory', 'delivery_dining', 'check_circle'];
+    $stepLabels  = ['Penyiapan', 'Siap Kirim', 'Dibawa', 'Dikirim', 'Terkirim'];
 
     $isDelivering = $prescription->status === 'dalam_pengiriman';
+    $isDibawa     = $prescription->status === 'dibawa';
     $isDelivered  = $prescription->status === 'terkirim';
     $isCancelled  = $prescription->status === 'dibatalkan';
 
@@ -358,8 +360,16 @@
         </div>
         @endif
 
+        {{-- Dibawa banner --}}
+        @if($isDibawa)
+        <div class="not-active-banner" style="background:#f0fdfa;border-color:#99f6e4;">
+            <span class="material-icons" style="color:#0d9488;">inventory</span>
+            <div style="color:#0d6e64;">Obat sudah diambil kurir dari RS dan akan segera diantarkan.</div>
+        </div>
+        @endif
+
         {{-- Not active warning --}}
-        @if(! $isDelivering && ! $isDelivered && ! $isCancelled)
+        @if(! $isDelivering && ! $isDelivered && ! $isCancelled && ! $isDibawa)
         <div class="not-active-banner">
             <span class="material-icons">info</span>
             <div>Peta lokasi kurir akan aktif secara otomatis ketika kurir memulai pengiriman.</div>
@@ -395,7 +405,7 @@
         </div>
 
         {{-- Info Kurir --}}
-        @if($courier && ($isDelivering || $isDelivered))
+        @if($courier && ($isDibawa || $isDelivering || $isDelivered))
         <div class="info-card">
             <div class="info-card-title">Informasi Kurir</div>
             <div class="info-row">

@@ -4,6 +4,7 @@ package com.meditrack.kurir.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +24,15 @@ public final class ActivityOrderListBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final LinearLayout bottomPickupBar;
+
+  @NonNull
+  public final Button btnAmbilResep;
+
+  @NonNull
+  public final Button btnBatalPilih;
+
+  @NonNull
   public final ImageButton btnLogout;
 
   @NonNull
@@ -35,16 +45,25 @@ public final class ActivityOrderListBinding implements ViewBinding {
   public final TextView tvEmpty;
 
   @NonNull
+  public final TextView tvSelectedCount;
+
+  @NonNull
   public final TextView tvUserName;
 
-  private ActivityOrderListBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnLogout,
+  private ActivityOrderListBinding(@NonNull LinearLayout rootView,
+      @NonNull LinearLayout bottomPickupBar, @NonNull Button btnAmbilResep,
+      @NonNull Button btnBatalPilih, @NonNull ImageButton btnLogout,
       @NonNull RecyclerView recyclerView, @NonNull SwipeRefreshLayout swipeRefresh,
-      @NonNull TextView tvEmpty, @NonNull TextView tvUserName) {
+      @NonNull TextView tvEmpty, @NonNull TextView tvSelectedCount, @NonNull TextView tvUserName) {
     this.rootView = rootView;
+    this.bottomPickupBar = bottomPickupBar;
+    this.btnAmbilResep = btnAmbilResep;
+    this.btnBatalPilih = btnBatalPilih;
     this.btnLogout = btnLogout;
     this.recyclerView = recyclerView;
     this.swipeRefresh = swipeRefresh;
     this.tvEmpty = tvEmpty;
+    this.tvSelectedCount = tvSelectedCount;
     this.tvUserName = tvUserName;
   }
 
@@ -75,6 +94,24 @@ public final class ActivityOrderListBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.bottomPickupBar;
+      LinearLayout bottomPickupBar = ViewBindings.findChildViewById(rootView, id);
+      if (bottomPickupBar == null) {
+        break missingId;
+      }
+
+      id = R.id.btnAmbilResep;
+      Button btnAmbilResep = ViewBindings.findChildViewById(rootView, id);
+      if (btnAmbilResep == null) {
+        break missingId;
+      }
+
+      id = R.id.btnBatalPilih;
+      Button btnBatalPilih = ViewBindings.findChildViewById(rootView, id);
+      if (btnBatalPilih == null) {
+        break missingId;
+      }
+
       id = R.id.btnLogout;
       ImageButton btnLogout = ViewBindings.findChildViewById(rootView, id);
       if (btnLogout == null) {
@@ -99,14 +136,21 @@ public final class ActivityOrderListBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvSelectedCount;
+      TextView tvSelectedCount = ViewBindings.findChildViewById(rootView, id);
+      if (tvSelectedCount == null) {
+        break missingId;
+      }
+
       id = R.id.tvUserName;
       TextView tvUserName = ViewBindings.findChildViewById(rootView, id);
       if (tvUserName == null) {
         break missingId;
       }
 
-      return new ActivityOrderListBinding((LinearLayout) rootView, btnLogout, recyclerView,
-          swipeRefresh, tvEmpty, tvUserName);
+      return new ActivityOrderListBinding((LinearLayout) rootView, bottomPickupBar, btnAmbilResep,
+          btnBatalPilih, btnLogout, recyclerView, swipeRefresh, tvEmpty, tvSelectedCount,
+          tvUserName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -4,6 +4,7 @@ package com.meditrack.kurir.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,9 @@ public final class ItemOrderBinding implements ViewBinding {
   private final CardView rootView;
 
   @NonNull
+  public final CheckBox checkbox;
+
+  @NonNull
   public final TextView tvAddress;
 
   @NonNull
@@ -29,18 +33,23 @@ public final class ItemOrderBinding implements ViewBinding {
   public final TextView tvPatientName;
 
   @NonNull
+  public final TextView tvPilih;
+
+  @NonNull
   public final TextView tvStatus;
 
   @NonNull
   public final TextView tvTanggal;
 
-  private ItemOrderBinding(@NonNull CardView rootView, @NonNull TextView tvAddress,
-      @NonNull TextView tvNomorResep, @NonNull TextView tvPatientName, @NonNull TextView tvStatus,
-      @NonNull TextView tvTanggal) {
+  private ItemOrderBinding(@NonNull CardView rootView, @NonNull CheckBox checkbox,
+      @NonNull TextView tvAddress, @NonNull TextView tvNomorResep, @NonNull TextView tvPatientName,
+      @NonNull TextView tvPilih, @NonNull TextView tvStatus, @NonNull TextView tvTanggal) {
     this.rootView = rootView;
+    this.checkbox = checkbox;
     this.tvAddress = tvAddress;
     this.tvNomorResep = tvNomorResep;
     this.tvPatientName = tvPatientName;
+    this.tvPilih = tvPilih;
     this.tvStatus = tvStatus;
     this.tvTanggal = tvTanggal;
   }
@@ -72,6 +81,12 @@ public final class ItemOrderBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.checkbox;
+      CheckBox checkbox = ViewBindings.findChildViewById(rootView, id);
+      if (checkbox == null) {
+        break missingId;
+      }
+
       id = R.id.tvAddress;
       TextView tvAddress = ViewBindings.findChildViewById(rootView, id);
       if (tvAddress == null) {
@@ -90,6 +105,12 @@ public final class ItemOrderBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvPilih;
+      TextView tvPilih = ViewBindings.findChildViewById(rootView, id);
+      if (tvPilih == null) {
+        break missingId;
+      }
+
       id = R.id.tvStatus;
       TextView tvStatus = ViewBindings.findChildViewById(rootView, id);
       if (tvStatus == null) {
@@ -102,8 +123,8 @@ public final class ItemOrderBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemOrderBinding((CardView) rootView, tvAddress, tvNomorResep, tvPatientName,
-          tvStatus, tvTanggal);
+      return new ItemOrderBinding((CardView) rootView, checkbox, tvAddress, tvNomorResep,
+          tvPatientName, tvPilih, tvStatus, tvTanggal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

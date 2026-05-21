@@ -1,46 +1,54 @@
 [
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/layout_activity_order_list.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/layout/activity_order_list.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/layout_item_order.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/item_order.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/drawable_ic_logout.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/drawable/ic_logout.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/layout_activity_delivery.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/activity_delivery.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/mipmap-hdpi_ic_launcher.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/mipmap-hdpi/ic_launcher.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/mipmap-hdpi_ic_launcher_round.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/mipmap-hdpi/ic_launcher_round.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/layout_item_order.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/layout/item_order.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/layout_item_order_header.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/item_order_header.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/drawable_bg_badge_rounded.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/drawable/bg_badge_rounded.xml"
-    },
-    {
-        "merged": "com.meditrack.kurir.app-debug-42:/drawable_bg_logo_circle.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/drawable/bg_logo_circle.xml"
-    },
-    {
-        "merged": "com.meditrack.kurir.app-debug-42:/drawable_ic_local_shipping.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/drawable/ic_local_shipping.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/mipmap-hdpi/ic_launcher.xml"
     },
     {
         "merged": "com.meditrack.kurir.app-debug-42:/layout_activity_delivery.xml.flat",
         "source": "com.meditrack.kurir.app-main-44:/layout/activity_delivery.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/layout_activity_login.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/layout/activity_login.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/drawable_ic_local_shipping.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/drawable/ic_local_shipping.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/drawable_ic_arrow_back.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/drawable/ic_arrow_back.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/drawable_bg_logo_circle.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/drawable/bg_logo_circle.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-debug-42:/mipmap-hdpi_ic_launcher_round.xml.flat",
-        "source": "com.meditrack.kurir.app-main-44:/mipmap-hdpi/ic_launcher_round.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/drawable_bg_badge_rounded.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/drawable/bg_badge_rounded.xml"
+    },
+    {
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/layout_activity_login.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/drawable_ic_arrow_back.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/drawable/ic_arrow_back.xml"
+    },
+    {
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/drawable_ic_logout.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/drawable/ic_logout.xml"
+    },
+    {
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-debug-42:/layout_activity_order_list.xml.flat",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/activity_order_list.xml"
     }
 ]

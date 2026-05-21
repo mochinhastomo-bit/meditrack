@@ -31,6 +31,7 @@ object Constants {
     // Intent extras
     const val EXTRA_ORDER_ID     = "extra_order_id"
     const val EXTRA_ORDER_NOMOR  = "extra_order_nomor"
+    const val EXTRA_ORDER_STATUS = "extra_order_status"
     const val EXTRA_DEST_LAT     = "extra_dest_lat"
     const val EXTRA_DEST_LNG     = "extra_dest_lng"
     const val EXTRA_DEST_LABEL   = "extra_dest_label"

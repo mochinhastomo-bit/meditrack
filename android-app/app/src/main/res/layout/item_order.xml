@@ -116,7 +116,14 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
             <TextView
+                android:id="@+id/tvPilih"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pilih →"

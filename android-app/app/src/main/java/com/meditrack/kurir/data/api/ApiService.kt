@@ -26,4 +26,7 @@ interface ApiService {
 
     @POST("kurir/location")
     suspend fun updateLocation(@Body request: LocationRequest): Response<Unit>
+
+    @POST("kurir/orders/pickup")
+    suspend fun pickupOrders(@Body request: BatchPickupRequest): Response<BatchPickupResponse>
 }

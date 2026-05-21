@@ -18,6 +18,15 @@ data class StatusRequest(
     val status: String
 )
 
+data class BatchPickupRequest(
+    @SerializedName("order_ids") val orderIds: List<Int>
+)
+
+data class BatchPickupResponse(
+    val message: String,
+    val count: Int
+)
+
 // ── RESPONSE ─────────────────────────────────────────────────────────────
 
 data class LoginResponse(

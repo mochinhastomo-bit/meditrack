@@ -19,11 +19,15 @@ drawable bg_logo_circle
 drawable ic_arrow_back
 drawable ic_local_shipping
 drawable ic_logout
+id bottomPickupBar
+id btnAmbilResep
 id btnBack
+id btnBatalPilih
 id btnComplete
 id btnLogin
 id btnLogout
 id btnStartDelivery
+id checkbox
 id etEmail
 id etPassword
 id layoutDelivering
@@ -38,6 +42,9 @@ id tvDistance
 id tvEmpty
 id tvNomorResep
 id tvPatientName
+id tvPilih
+id tvSectionTitle
+id tvSelectedCount
 id tvStatus
 id tvStatusInfo
 id tvTanggal
@@ -46,6 +53,7 @@ layout activity_delivery
 layout activity_login
 layout activity_order_list
 layout item_order
+layout item_order_header
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name

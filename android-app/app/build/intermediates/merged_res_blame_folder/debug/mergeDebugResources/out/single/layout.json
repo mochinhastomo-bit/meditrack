@@ -1,18 +1,26 @@
 [
     {
-        "merged": "com.meditrack.kurir.app-mergeDebugResources-41:/layout/activity_login.xml",
-        "source": "com.meditrack.kurir.app-main-44:/layout/activity_login.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-mergeDebugResources-41:/layout/activity_delivery.xml",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/activity_delivery.xml"
+    },
+    {
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-mergeDebugResources-41:/layout/activity_order_list.xml",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/activity_order_list.xml"
+    },
+    {
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-mergeDebugResources-41:/layout/activity_login.xml",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/activity_login.xml"
     },
     {
         "merged": "com.meditrack.kurir.app-mergeDebugResources-41:/layout/activity_delivery.xml",
         "source": "com.meditrack.kurir.app-main-44:/layout/activity_delivery.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-mergeDebugResources-41:/layout/item_order.xml",
-        "source": "com.meditrack.kurir.app-main-44:/layout/item_order.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-mergeDebugResources-41:/layout/item_order_header.xml",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/item_order_header.xml"
     },
     {
-        "merged": "com.meditrack.kurir.app-mergeDebugResources-41:/layout/activity_order_list.xml",
-        "source": "com.meditrack.kurir.app-main-44:/layout/activity_order_list.xml"
+        "merged": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-mergeDebugResources-41:/layout/item_order.xml",
+        "source": "/Users/mochinhastomo/.gradle/daemon/9.0.0/com.meditrack.kurir.app-main-44:/layout/item_order.xml"
     }
 ]

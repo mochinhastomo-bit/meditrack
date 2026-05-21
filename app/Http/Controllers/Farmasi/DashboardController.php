@@ -16,6 +16,7 @@ class DashboardController extends Controller
             'resep_hari_ini'     => Prescription::where('tanggal', $today)->count(),
             'penyiapan'          => Prescription::where('status', 'penyiapan')->count(),
             'siap_kirim'         => Prescription::where('status', 'siap_kirim')->count(),
+            'dibawa'             => Prescription::where('status', 'dibawa')->count(),
             'dalam_pengiriman'   => Prescription::where('status', 'dalam_pengiriman')->count(),
             'terkirim_hari_ini'  => Prescription::where('status', 'terkirim')
                                         ->where('updated_at', '>=', now()->startOfDay())
@@ -35,6 +36,12 @@ class DashboardController extends Controller
             ->orderBy('tanggal')->orderBy('nomor_resep')
             ->get();
 
+        $kolDibawa = Prescription::with(['patient', 'courier'])
+            ->where('status', 'dibawa')
+            ->where('is_active', true)
+            ->latest('updated_at')
+            ->get();
+
         $kolPengiriman = Prescription::with(['patient', 'courier'])
             ->where('status', 'dalam_pengiriman')
             ->where('is_active', true)
@@ -42,7 +49,7 @@ class DashboardController extends Controller
             ->get();
 
         return view('farmasi.dashboard', compact(
-            'stats', 'kolPenyiapan', 'kolSiapKirim', 'kolPengiriman'
+            'stats', 'kolPenyiapan', 'kolSiapKirim', 'kolDibawa', 'kolPengiriman'
         ));
     }
 
@@ -95,6 +102,10 @@ class DashboardController extends Controller
             ->where('status', 'siap_kirim')->where('is_active', true)
             ->orderBy('tanggal')->orderBy('nomor_resep')->get();
 
+        $dibawa = Prescription::with(['patient', 'courier'])
+            ->where('status', 'dibawa')->where('is_active', true)
+            ->latest('updated_at')->get();
+
         $pengiriman = Prescription::with(['patient', 'courier', 'address'])
             ->where('status', 'dalam_pengiriman')->where('is_active', true)
             ->latest('updated_at')->get();
@@ -102,10 +113,12 @@ class DashboardController extends Controller
         return response()->json([
             'penyiapan'  => $penyiapan->map(fn($p) => $map($p)),
             'siap_kirim' => $siapKirim->map(fn($p) => $map($p)),
+            'dibawa'     => $dibawa->map(fn($p) => $map($p, true)),
             'pengiriman' => $pengiriman->map(fn($p) => $map($p, true)),
             'stats' => [
                 'penyiapan'        => $penyiapan->count(),
                 'siap_kirim'       => $siapKirim->count(),
+                'dibawa'           => $dibawa->count(),
                 'dalam_pengiriman' => $pengiriman->count(),
                 'resep_hari_ini'   => Prescription::where('tanggal', $today)->count(),
                 'terkirim_hari_ini'=> Prescription::where('status','terkirim')

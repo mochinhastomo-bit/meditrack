@@ -3272,11 +3272,14 @@ id beginning
 id bestChoice
 id blocking
 id bottom
+id bottomPickupBar
 id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnAmbilResep
 id btnBack
+id btnBatalPilih
 id btnComplete
 id btnLogin
 id btnLogout
@@ -3683,6 +3686,9 @@ id tvDistance
 id tvEmpty
 id tvNomorResep
 id tvPatientName
+id tvPilih
+id tvSectionTitle
+id tvSelectedCount
 id tvStatus
 id tvStatusInfo
 id tvTanggal
@@ -3848,6 +3854,7 @@ layout design_text_input_start_icon
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_order
+layout item_order_header
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

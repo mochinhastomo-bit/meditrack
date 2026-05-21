@@ -148,13 +148,13 @@
     .card-hidden { display: none !important; }
     .stat-cards-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 12px;
         margin-bottom: 20px;
     }
     .kanban-board-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 14px;
     }
     @media (max-width: 768px) {
@@ -205,6 +205,14 @@
         </div>
         <div style="font-size:24px;font-weight:700;color:#202124;" id="stat-siap-kirim">{{ $stats['siap_kirim'] }}</div>
         <div style="font-size:11px;color:#5f6368;margin-top:2px;">Menunggu kurir</div>
+    </div>
+
+    <div class="card" style="border-top:3px solid #0d9488; padding:12px 16px;">
+        <div style="font-size:11px;color:#5f6368;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">
+            <span class="material-icons" style="font-size:13px;vertical-align:-2px;color:#0d9488;">inventory</span> Dibawa Kurir
+        </div>
+        <div style="font-size:24px;font-weight:700;color:#202124;" id="stat-dibawa">{{ $stats['dibawa'] }}</div>
+        <div style="font-size:11px;color:#5f6368;margin-top:2px;">Diambil, antri antar</div>
     </div>
 
     <div class="card" style="border-top:3px solid #7627bb; padding:12px 16px;">
@@ -304,7 +312,37 @@
         </div>
     </div>
 
-    {{-- ════ KOLOM 3 : DALAM PENGIRIMAN ════ --}}
+    {{-- ════ KOLOM 3 : DIBAWA KURIR ════ --}}
+    <div class="kanban-col">
+        <div class="kanban-header">
+            <div class="kanban-header-left">
+                <span class="dot-pulse" style="background:#0d9488;"></span>
+                <span style="font-size:13px;font-weight:500;color:#202124;">Dibawa Kurir</span>
+            </div>
+            <span class="kanban-count" style="background:#ccfbf1;color:#0d9488;" id="count-dibawa">{{ $kolDibawa->count() }}</span>
+        </div>
+        <div class="kanban-body" id="col-dibawa">
+            @forelse($kolDibawa as $p)
+            <div class="kanban-card" id="card-{{ $p->id }}" data-id="{{ $p->id }}">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px;">
+                    <div style="font-size:13px;font-weight:600;color:#202124;">{{ $p->nomor_resep }}</div>
+                    <span style="font-size:10px;font-weight:600;background:#ccfbf1;color:#0d9488;padding:2px 8px;border-radius:10px;white-space:nowrap;">Dibawa</span>
+                </div>
+                <div style="font-size:12px;color:#5f6368;">👤 {{ $p->patient->name ?? '-' }}</div>
+                @if($p->courier)
+                <div style="font-size:12px;color:#5f6368;margin-top:4px;">🛵 {{ $p->courier->name }} · {{ $p->courier->plate_number }}</div>
+                @endif
+            </div>
+            @empty
+            <div class="kanban-empty" id="empty-dibawa">
+                <span class="material-icons" style="font-size:36px;margin-bottom:6px;">inventory</span>
+                <div style="font-size:13px;">Belum ada yang dibawa</div>
+            </div>
+            @endforelse
+        </div>
+    </div>
+
+    {{-- ════ KOLOM 4 : DALAM PENGIRIMAN ════ --}}
     <div class="kanban-col">
         <div class="kanban-header">
             <div class="kanban-header-left">
@@ -662,6 +700,20 @@ function buildSiapKirimCard(p) {
     return div;
 }
 
+// ── Builder: kartu Dibawa Kurir ───────────────────────────────────────────
+function buildDibawaCard(p) {
+    const div = document.createElement('div');
+    div.className = 'kanban-card';
+    div.innerHTML = `
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px;">
+            <div style="font-size:13px;font-weight:600;color:#202124;">${p.nomor_resep}</div>
+            <span style="font-size:10px;font-weight:600;background:#ccfbf1;color:#0d9488;padding:2px 8px;border-radius:10px;white-space:nowrap;">Dibawa</span>
+        </div>
+        <div style="font-size:12px;color:#5f6368;">👤 ${p.patient_name}</div>
+        ${p.courier_name ? `<div style="font-size:12px;color:#5f6368;margin-top:4px;">🛵 ${p.courier_name} · ${p.plate_number ?? ''}</div>` : ''}`;
+    return div;
+}
+
 // ── Builder: kartu Dalam Pengiriman ──────────────────────────────────────
 function buildPengirimanCard(p) {
     const div = document.createElement('div');
@@ -723,6 +775,9 @@ function refreshKanban() {
             syncColumn('col-siap-kirim', 'empty-siap-kirim', 'count-siap-kirim', 'stat-siap-kirim',
                 res.siap_kirim, buildSiapKirimCard,  false);
 
+            syncColumn('col-dibawa', 'empty-dibawa', 'count-dibawa', 'stat-dibawa',
+                res.dibawa, buildDibawaCard, false);
+
             syncColumn('col-pengiriman', 'empty-pengiriman', 'count-pengiriman', 'stat-pengiriman',
                 res.pengiriman, buildPengirimanCard,  false, updatePengirimanCard);
 
@@ -730,6 +785,7 @@ function refreshKanban() {
             const s = res.stats;
             setText('stat-penyiapan',  s.penyiapan);
             setText('stat-siap-kirim', s.siap_kirim);
+            setText('stat-dibawa',     s.dibawa);
             setText('stat-pengiriman', s.dalam_pengiriman);
             setText('stat-hari-ini',   s.resep_hari_ini);
 

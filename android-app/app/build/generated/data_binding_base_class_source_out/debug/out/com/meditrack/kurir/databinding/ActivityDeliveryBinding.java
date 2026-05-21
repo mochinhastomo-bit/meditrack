@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ public final class ActivityDeliveryBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final ImageButton btnBack;
+  public final Button btnBack;
 
   @NonNull
   public final Button btnComplete;
@@ -55,7 +54,7 @@ public final class ActivityDeliveryBinding implements ViewBinding {
   @NonNull
   public final TextView tvStatusInfo;
 
-  private ActivityDeliveryBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
+  private ActivityDeliveryBinding(@NonNull LinearLayout rootView, @NonNull Button btnBack,
       @NonNull Button btnComplete, @NonNull Button btnStartDelivery,
       @NonNull LinearLayout layoutDelivering, @NonNull ProgressBar progressBar,
       @NonNull TextView tvDestAddress, @NonNull TextView tvDestLabel, @NonNull TextView tvDistance,
@@ -103,7 +102,7 @@ public final class ActivityDeliveryBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.btnBack;
-      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      Button btnBack = ViewBindings.findChildViewById(rootView, id);
       if (btnBack == null) {
         break missingId;
       }

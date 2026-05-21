@@ -39,12 +39,13 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var prefs: SharedPrefManager
     private var googleMap: GoogleMap? = null
 
-    private var orderId: Int     = -1
+    private var orderId: Int       = -1
     private var orderNomor: String = ""
+    private var orderStatus: String = ""
     private var patientName: String = ""
-    private var destLat: Double  = 0.0
-    private var destLng: Double  = 0.0
-    private var destLabel: String = ""
+    private var destLat: Double    = 0.0
+    private var destLng: Double    = 0.0
+    private var destLabel: String  = ""
     private var destAddress: String = ""
 
     // Marker & polyline
@@ -105,6 +106,7 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback {
         // Baca data order dari intent
         orderId     = intent.getIntExtra(Constants.EXTRA_ORDER_ID, -1)
         orderNomor  = intent.getStringExtra(Constants.EXTRA_ORDER_NOMOR) ?: ""
+        orderStatus = intent.getStringExtra(Constants.EXTRA_ORDER_STATUS) ?: ""
         patientName = intent.getStringExtra(Constants.EXTRA_PATIENT_NAME) ?: ""
         destLat     = intent.getDoubleExtra(Constants.EXTRA_DEST_LAT, 0.0)
         destLng     = intent.getDoubleExtra(Constants.EXTRA_DEST_LNG, 0.0)
@@ -123,6 +125,17 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.tvDestAddress.text = destAddress
 
         binding.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+        // Jika sudah dalam_pengiriman, langsung tampilkan mode kirim
+        if (orderStatus == "dalam_pengiriman") {
+            binding.btnStartDelivery.visibility  = View.GONE
+            binding.layoutDelivering.visibility  = View.VISIBLE
+            binding.tvStatusInfo.text = "🚀 Sedang dalam pengiriman..."
+            binding.tvStatusInfo.setTextColor(Color.parseColor("#7627BB"))
+            requestLocationPermissions()
+        } else {
+            binding.btnStartDelivery.text = "Mulai Antar"
+        }
 
         binding.btnStartDelivery.setOnClickListener {
             AlertDialog.Builder(this)

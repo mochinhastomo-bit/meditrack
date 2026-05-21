@@ -18,13 +18,29 @@ class OrderRepository(private val api: ApiService) {
         }
     }
 
+    suspend fun pickupOrders(orderIds: List<Int>): Result<BatchPickupResponse> {
+        return try {
+            val response = api.pickupOrders(BatchPickupRequest(orderIds))
+            if (response.isSuccessful && response.body() != null) {
+                Result.Success(response.body()!!)
+            } else {
+                Result.Error("Gagal mengambil resep: ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Result.Error("Tidak dapat terhubung ke server")
+        }
+    }
+
     suspend fun startDelivery(orderId: Int): Result<StatusResponse> {
         return try {
             val response = api.updateStatus(orderId, StatusRequest("dalam_pengiriman"))
             if (response.isSuccessful && response.body() != null) {
                 Result.Success(response.body()!!)
             } else {
-                Result.Error("Gagal memperbarui status: ${response.code()}")
+                val errorMsg = response.errorBody()?.string()
+                    ?.let { runCatching { org.json.JSONObject(it).getString("message") }.getOrNull() }
+                    ?: "Gagal memperbarui status"
+                Result.Error(errorMsg)
             }
         } catch (e: Exception) {
             Result.Error("Tidak dapat terhubung ke server")
