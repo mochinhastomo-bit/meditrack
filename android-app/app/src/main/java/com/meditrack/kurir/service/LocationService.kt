@@ -48,7 +48,7 @@ class LocationService : Service() {
     }
 
     private fun startLocationUpdates() {
-        val request = LocationRequest.Builder(
+        val request = com.google.android.gms.location.LocationRequest.Builder(
             Priority.PRIORITY_HIGH_ACCURACY,
             Constants.GPS_INTERVAL_MS
         )

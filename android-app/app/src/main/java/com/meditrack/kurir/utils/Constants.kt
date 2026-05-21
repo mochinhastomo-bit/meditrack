@@ -6,7 +6,7 @@ object Constants {
      * Emulator Android: gunakan 10.0.2.2 (alias localhost)
      * HP fisik di jaringan lokal: gunakan IP komputer, misal http://192.168.1.5:8000/api/
      */
-    const val BASE_URL = "http://10.0.2.2:8000/api/"
+    const val BASE_URL = "https://trackingobat.rspetrokimiagresik.com/api/"
 
     // SharedPreferences
     const val PREF_NAME        = "meditrack_prefs"

@@ -14,6 +14,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        try {
         $request->validate([
             'email'    => 'required|email',
             'password' => 'required|string',
@@ -58,6 +59,12 @@ class AuthController extends Controller
                 'phone'        => $courier->phone,
             ] : null,
         ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Debug: ' . $e->getMessage(),
+                'file'    => $e->getFile() . ':' . $e->getLine(),
+            ], 500);
+        }
     }
 
     /**
