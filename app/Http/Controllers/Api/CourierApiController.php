@@ -133,6 +133,7 @@ class CourierApiController extends Controller
         }
 
         $allowed = [
+            'siap_kirim'       => 'dalam_pengiriman',
             'dibawa'           => 'dalam_pengiriman',
             'dalam_pengiriman' => 'terkirim',
         ];
