@@ -50,6 +50,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.history.HistoryActivity"
+            android:exported="false" />
+
         <!-- Background GPS Service -->
         <service
             android:name=".service.LocationService"

@@ -15,6 +15,7 @@ import com.meditrack.kurir.data.repository.AuthRepository
 import com.meditrack.kurir.data.repository.OrderRepository
 import com.meditrack.kurir.databinding.ActivityOrderListBinding
 import com.meditrack.kurir.ui.delivery.DeliveryActivity
+import com.meditrack.kurir.ui.history.HistoryActivity
 import com.meditrack.kurir.ui.login.LoginActivity
 import com.meditrack.kurir.utils.Constants
 import com.meditrack.kurir.utils.SharedPrefManager
@@ -62,6 +63,9 @@ class OrderListActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         binding.tvUserName.text = prefs.userName ?: "Kurir"
+        binding.btnHistory.setOnClickListener {
+            startActivity(Intent(this, HistoryActivity::class.java))
+        }
         binding.btnLogout.setOnClickListener { confirmLogout() }
     }
 

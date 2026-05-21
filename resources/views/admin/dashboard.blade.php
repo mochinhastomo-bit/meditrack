@@ -3,7 +3,7 @@
 
 @push('styles')
 <style>
-    .admin-stat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px; }
+    .admin-stat-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-bottom:20px; }
     .admin-status-grid { display:grid; grid-template-columns:1fr 320px; gap:16px; margin-bottom:20px; }
     .admin-status-inner { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
     @media (max-width: 900px) {
@@ -61,6 +61,17 @@
         <div style="font-size:12px;color:#5f6368;margin-top:4px;">Siap bertugas</div>
     </div>
 
+    <div class="card" style="border-top:3px solid #0d9488; padding:16px 20px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div style="width:40px;height:40px;background:#ccfbf1;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                <span class="material-icons" style="color:#0d9488;font-size:20px;">inventory</span>
+            </div>
+            <div style="font-size:12px;color:#5f6368;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;">Dibawa Kurir</div>
+        </div>
+        <div style="font-size:28px;font-weight:700;color:#202124;">{{ $stats['dibawa'] }}</div>
+        <div style="font-size:12px;color:#5f6368;margin-top:4px;">Diambil, antri antar</div>
+    </div>
+
     <div class="card" style="border-top:3px solid #7627bb; padding:16px 20px;">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
             <div style="width:40px;height:40px;background:#f3e8fd;border-radius:8px;display:flex;align-items:center;justify-content:center;">
@@ -68,7 +79,7 @@
             </div>
             <div style="font-size:12px;color:#5f6368;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;">Dalam Pengiriman</div>
         </div>
-        <div style="font-size:28px;font-weight:700;color:#202124;">{{ $statusData['dalam_pengiriman']['count'] }}</div>
+        <div style="font-size:28px;font-weight:700;color:#202124;">{{ $stats['dalam_pengiriman'] }}</div>
         <div style="font-size:12px;color:#5f6368;margin-top:4px;">Sedang dikirim sekarang</div>
     </div>
 </div>

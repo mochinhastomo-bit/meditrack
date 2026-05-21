@@ -18,6 +18,19 @@ class OrderRepository(private val api: ApiService) {
         }
     }
 
+    suspend fun getHistory(): Result<List<Order>> {
+        return try {
+            val response = api.getOrderHistory()
+            if (response.isSuccessful && response.body() != null) {
+                Result.Success(response.body()!!.data)
+            } else {
+                Result.Error("Gagal memuat riwayat: ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Result.Error("Tidak dapat terhubung ke server")
+        }
+    }
+
     suspend fun pickupOrders(orderIds: List<Int>): Result<BatchPickupResponse> {
         return try {
             val response = api.pickupOrders(BatchPickupRequest(orderIds))

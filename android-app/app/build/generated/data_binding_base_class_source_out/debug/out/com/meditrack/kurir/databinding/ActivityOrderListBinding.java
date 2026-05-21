@@ -33,6 +33,9 @@ public final class ActivityOrderListBinding implements ViewBinding {
   public final Button btnBatalPilih;
 
   @NonNull
+  public final Button btnHistory;
+
+  @NonNull
   public final ImageButton btnLogout;
 
   @NonNull
@@ -52,13 +55,14 @@ public final class ActivityOrderListBinding implements ViewBinding {
 
   private ActivityOrderListBinding(@NonNull LinearLayout rootView,
       @NonNull LinearLayout bottomPickupBar, @NonNull Button btnAmbilResep,
-      @NonNull Button btnBatalPilih, @NonNull ImageButton btnLogout,
+      @NonNull Button btnBatalPilih, @NonNull Button btnHistory, @NonNull ImageButton btnLogout,
       @NonNull RecyclerView recyclerView, @NonNull SwipeRefreshLayout swipeRefresh,
       @NonNull TextView tvEmpty, @NonNull TextView tvSelectedCount, @NonNull TextView tvUserName) {
     this.rootView = rootView;
     this.bottomPickupBar = bottomPickupBar;
     this.btnAmbilResep = btnAmbilResep;
     this.btnBatalPilih = btnBatalPilih;
+    this.btnHistory = btnHistory;
     this.btnLogout = btnLogout;
     this.recyclerView = recyclerView;
     this.swipeRefresh = swipeRefresh;
@@ -112,6 +116,12 @@ public final class ActivityOrderListBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnHistory;
+      Button btnHistory = ViewBindings.findChildViewById(rootView, id);
+      if (btnHistory == null) {
+        break missingId;
+      }
+
       id = R.id.btnLogout;
       ImageButton btnLogout = ViewBindings.findChildViewById(rootView, id);
       if (btnLogout == null) {
@@ -149,8 +159,8 @@ public final class ActivityOrderListBinding implements ViewBinding {
       }
 
       return new ActivityOrderListBinding((LinearLayout) rootView, bottomPickupBar, btnAmbilResep,
-          btnBatalPilih, btnLogout, recyclerView, swipeRefresh, tvEmpty, tvSelectedCount,
-          tvUserName);
+          btnBatalPilih, btnHistory, btnLogout, recyclerView, swipeRefresh, tvEmpty,
+          tvSelectedCount, tvUserName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

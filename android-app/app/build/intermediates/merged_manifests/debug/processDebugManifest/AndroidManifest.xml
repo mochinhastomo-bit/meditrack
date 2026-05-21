@@ -77,6 +77,9 @@
             android:name="com.meditrack.kurir.ui.delivery.DeliveryActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.meditrack.kurir.ui.history.HistoryActivity"
+            android:exported="false" />
 
         <!-- Background GPS Service -->
         <service

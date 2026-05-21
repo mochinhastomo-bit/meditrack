@@ -38,6 +38,16 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btnHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Riwayat"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
         <ImageButton
             android:id="@+id/btnLogout"
             android:layout_width="40dp"

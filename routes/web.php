@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CourierController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\PatientAddressController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\PrescriptionController;
@@ -36,6 +37,12 @@ Route::middleware(['auth', 'role:superadmin'])->prefix('admin')->name('admin.')-
         ->name('prescriptions.addresses-by-patient');
     Route::get('prescriptions/{prescription}/track', [PrescriptionController::class, 'track'])
         ->name('prescriptions.track');
+
+    // Laporan
+    Route::get('reports',         [ReportController::class, 'index'])->name('reports.index');
+    Route::get('reports/preview', [ReportController::class, 'preview'])->name('reports.preview');
+    Route::get('reports/excel',   [ReportController::class, 'exportExcel'])->name('reports.excel');
+    Route::get('reports/pdf',     [ReportController::class, 'exportPdf'])->name('reports.pdf');
 });
 
 // ===== FARMASI =====

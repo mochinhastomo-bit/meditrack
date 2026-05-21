@@ -3281,6 +3281,7 @@ id btnAmbilResep
 id btnBack
 id btnBatalPilih
 id btnComplete
+id btnHistory
 id btnLogin
 id btnLogout
 id btnStartDelivery
@@ -3685,6 +3686,7 @@ id tvDestLabel
 id tvDistance
 id tvEmpty
 id tvNomorResep
+id tvPatient
 id tvPatientName
 id tvPilih
 id tvSectionTitle
@@ -3833,6 +3835,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_delivery
+layout activity_history
 layout activity_login
 layout activity_order_list
 layout custom_dialog
@@ -3853,6 +3856,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_history
 layout item_order
 layout item_order_header
 layout m3_alert_dialog

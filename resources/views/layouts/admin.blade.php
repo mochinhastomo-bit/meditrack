@@ -133,6 +133,9 @@
             <a href="{{ route('admin.prescriptions.index') }}" class="nav-item {{ request()->routeIs('admin.prescriptions*') ? 'active' : '' }}">
                 <span class="material-icons">receipt_long</span> Catatan Resep
             </a>
+            <a href="{{ route('admin.reports.index') }}" class="nav-item {{ request()->routeIs('admin.reports*') ? 'active' : '' }}">
+                <span class="material-icons">summarize</span> Laporan
+            </a>
 
             <div class="sidebar-section-title">Master Data</div>
             <a href="{{ route('admin.users.index') }}" class="nav-item {{ request()->routeIs('admin.users*') ? 'active' : '' }}">

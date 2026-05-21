@@ -24,6 +24,7 @@ id btnAmbilResep
 id btnBack
 id btnBatalPilih
 id btnComplete
+id btnHistory
 id btnLogin
 id btnLogout
 id btnStartDelivery
@@ -41,6 +42,7 @@ id tvDestLabel
 id tvDistance
 id tvEmpty
 id tvNomorResep
+id tvPatient
 id tvPatientName
 id tvPilih
 id tvSectionTitle
@@ -50,8 +52,10 @@ id tvStatusInfo
 id tvTanggal
 id tvUserName
 layout activity_delivery
+layout activity_history
 layout activity_login
 layout activity_order_list
+layout item_history
 layout item_order
 layout item_order_header
 mipmap ic_launcher

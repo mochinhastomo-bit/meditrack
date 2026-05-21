@@ -22,6 +22,8 @@ class DashboardController extends Controller
             'total_pasien'       => Patient::count(),
             'total_kurir'        => Courier::where('is_active', true)->count(),
             'total_user'         => User::count(),
+            'dibawa'             => Prescription::where('status', 'dibawa')->count(),
+            'dalam_pengiriman'   => Prescription::where('status', 'dalam_pengiriman')->count(),
         ];
 
         // ── Resep per status ─────────────────────────────────────────────

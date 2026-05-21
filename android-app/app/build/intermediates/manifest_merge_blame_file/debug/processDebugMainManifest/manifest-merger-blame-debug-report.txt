@@ -70,7 +70,7 @@
 43-->[androidx.core:core:1.13.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/a9a9b46444b0f158b9960d7f980592a7/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
 44
 45    <application
-45-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:19:5-59:19
+45-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:19:5-63:19
 46        android:name="com.meditrack.kurir.MediTrackApp"
 46-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:20:9-37
 47        android:allowBackup="true"
@@ -133,106 +133,112 @@
 78-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:50:13-37
 79            android:screenOrientation="portrait" />
 79-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:51:13-49
-80
-81        <!-- Background GPS Service -->
-82        <service
-82-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:54:9-57:56
-83            android:name="com.meditrack.kurir.service.LocationService"
-83-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:55:13-52
-84            android:exported="false"
-84-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:56:13-37
-85            android:foregroundServiceType="location" />
-85-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:57:13-53
-86
-87        <!-- Needs to be explicitly declared on P+ -->
-88        <uses-library
-88-->[com.google.android.gms:play-services-maps:19.0.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/1d06b048962862d05bc36c274f120e6d/transformed/jetified-play-services-maps-19.0.0/AndroidManifest.xml:39:9-41:40
-89            android:name="org.apache.http.legacy"
-89-->[com.google.android.gms:play-services-maps:19.0.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/1d06b048962862d05bc36c274f120e6d/transformed/jetified-play-services-maps-19.0.0/AndroidManifest.xml:40:13-50
-90            android:required="false" />
-90-->[com.google.android.gms:play-services-maps:19.0.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/1d06b048962862d05bc36c274f120e6d/transformed/jetified-play-services-maps-19.0.0/AndroidManifest.xml:41:13-37
-91
-92        <activity
-92-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:9-173
-93            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-93-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:19-85
-94            android:exported="false"
-94-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:146-170
-95            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-95-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:86-145
-96
-97        <meta-data
-97-->[com.google.android.gms:play-services-basement:18.4.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/0344fa4a489eb5dc92bcb56c41166de9/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
-98            android:name="com.google.android.gms.version"
-98-->[com.google.android.gms:play-services-basement:18.4.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/0344fa4a489eb5dc92bcb56c41166de9/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
-99            android:value="@integer/google_play_services_version" />
-99-->[com.google.android.gms:play-services-basement:18.4.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/0344fa4a489eb5dc92bcb56c41166de9/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
-100
-101        <provider
-101-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-102            android:name="androidx.startup.InitializationProvider"
-102-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
-103            android:authorities="com.meditrack.kurir.androidx-startup"
-103-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
-104            android:exported="false" >
-104-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
-105            <meta-data
-105-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-106                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-106-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
-107                android:value="androidx.startup" />
-107-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+80        <activity
+80-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:53:9-55:40
+81            android:name="com.meditrack.kurir.ui.history.HistoryActivity"
+81-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:54:13-55
+82            android:exported="false" />
+82-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:55:13-37
+83
+84        <!-- Background GPS Service -->
+85        <service
+85-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:58:9-61:56
+86            android:name="com.meditrack.kurir.service.LocationService"
+86-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:59:13-52
+87            android:exported="false"
+87-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:60:13-37
+88            android:foregroundServiceType="location" />
+88-->/Users/mochinhastomo/Laravel/meditrack/android-app/app/src/main/AndroidManifest.xml:61:13-53
+89
+90        <!-- Needs to be explicitly declared on P+ -->
+91        <uses-library
+91-->[com.google.android.gms:play-services-maps:19.0.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/1d06b048962862d05bc36c274f120e6d/transformed/jetified-play-services-maps-19.0.0/AndroidManifest.xml:39:9-41:40
+92            android:name="org.apache.http.legacy"
+92-->[com.google.android.gms:play-services-maps:19.0.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/1d06b048962862d05bc36c274f120e6d/transformed/jetified-play-services-maps-19.0.0/AndroidManifest.xml:40:13-50
+93            android:required="false" />
+93-->[com.google.android.gms:play-services-maps:19.0.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/1d06b048962862d05bc36c274f120e6d/transformed/jetified-play-services-maps-19.0.0/AndroidManifest.xml:41:13-37
+94
+95        <activity
+95-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+96            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+96-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+97            android:exported="false"
+97-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+98            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+98-->[com.google.android.gms:play-services-base:18.5.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/49eb1e8aad2c4e3a32a7c05de0c9cc5d/transformed/jetified-play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+99
+100        <meta-data
+100-->[com.google.android.gms:play-services-basement:18.4.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/0344fa4a489eb5dc92bcb56c41166de9/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+101            android:name="com.google.android.gms.version"
+101-->[com.google.android.gms:play-services-basement:18.4.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/0344fa4a489eb5dc92bcb56c41166de9/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+102            android:value="@integer/google_play_services_version" />
+102-->[com.google.android.gms:play-services-basement:18.4.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/0344fa4a489eb5dc92bcb56c41166de9/transformed/jetified-play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
+103
+104        <provider
+104-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+105            android:name="androidx.startup.InitializationProvider"
+105-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+106            android:authorities="com.meditrack.kurir.androidx-startup"
+106-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+107            android:exported="false" >
+107-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
 108            <meta-data
-108-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/e0e90bcb5b0d2d81209f8d3dbc9db179/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
-109                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-109-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/e0e90bcb5b0d2d81209f8d3dbc9db179/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+108-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+109                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+109-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
 110                android:value="androidx.startup" />
-110-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/e0e90bcb5b0d2d81209f8d3dbc9db179/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+110-->[androidx.emoji2:emoji2:1.3.0] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/312286e73af238bfb8b974728aa2f66d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
 111            <meta-data
-111-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-112                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-112-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+111-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/e0e90bcb5b0d2d81209f8d3dbc9db179/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+112                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+112-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/e0e90bcb5b0d2d81209f8d3dbc9db179/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
 113                android:value="androidx.startup" />
-113-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-114        </provider>
-115
-116        <receiver
-116-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-117            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-117-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-118            android:directBootAware="false"
-118-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-119            android:enabled="true"
-119-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-120            android:exported="true"
-120-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-121            android:permission="android.permission.DUMP" >
-121-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-122            <intent-filter>
-122-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-123                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-123-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-123-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-124            </intent-filter>
+113-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/e0e90bcb5b0d2d81209f8d3dbc9db179/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+114            <meta-data
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+115                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+115-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+116                android:value="androidx.startup" />
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+117        </provider>
+118
+119        <receiver
+119-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+120            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+121            android:directBootAware="false"
+121-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+122            android:enabled="true"
+122-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+123            android:exported="true"
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+124            android:permission="android.permission.DUMP" >
+124-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
 125            <intent-filter>
-125-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-126                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-126-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-126-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+125-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+126                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+126-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+126-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
 127            </intent-filter>
 128            <intent-filter>
-128-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-129                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-129-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-129-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+128-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+129                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+129-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+129-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
 130            </intent-filter>
 131            <intent-filter>
-131-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-132                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-132-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-132-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+131-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+132                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+132-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+132-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
 133            </intent-filter>
-134        </receiver>
-135    </application>
-136
-137</manifest>
+134            <intent-filter>
+134-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+135                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+135-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+135-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/mochinhastomo/.gradle/caches/9.0.0/transforms/68faac9994ae19d29d36d24e4114b4fd/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+136            </intent-filter>
+137        </receiver>
+138    </application>
+139
+140</manifest>
