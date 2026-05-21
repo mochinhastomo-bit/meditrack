@@ -168,6 +168,7 @@ const baseUrl = isAdmin ? '/admin' : '/farmasi';
 const statusConfig = {
     penyiapan:        { label: 'Proses Penyiapan Obat', color: 'orange' },
     siap_kirim:       { label: 'Siap Kirim',            color: 'blue'   },
+    dibawa:           { label: 'Dibawa Kurir',          color: 'teal'   },
     dalam_pengiriman: { label: 'Dalam Pengiriman',      color: 'purple' },
     terkirim:         { label: 'Terkirim',              color: 'green'  },
     dibatalkan:       { label: 'Dibatalkan',            color: 'red'    },
@@ -177,6 +178,7 @@ function statusBadge(status, label) {
     const colors = {
         orange: 'background:#fef3e2; color:#b06000;',
         blue:   'background:#e8f0fe; color:#1a73e8;',
+        teal:   'background:#ccfbf1; color:#0d6e64;',
         purple: 'background:#f3e8fd; color:#7627bb;',
         green:  'background:#e6f4ea; color:#137333;',
         red:    'background:#fce8e6; color:#c5221f;',
