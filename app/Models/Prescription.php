@@ -14,6 +14,7 @@ class Prescription extends Model
         'patient_address_id',
         'courier_id',
         'keterangan',
+        'delivery_photo',
         'status',
         'is_active',
     ];

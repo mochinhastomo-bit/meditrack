@@ -17,7 +17,6 @@
                 <th>NIK</th>
                 <th>No. RM</th>
                 <th>Nama</th>
-                <th>Tgl. Lahir</th>
                 <th>No. HP</th>
                 <th>Alamat</th>
                 <th>Status</th>
@@ -41,37 +40,30 @@
             <input type="hidden" id="patientId">
             <div class="grid grid-cols-2 gap-3">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">NIK <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">NIK <span class="text-gray-400 text-xs">(opsional)</span></label>
                     <input type="text" id="nik" maxlength="16" placeholder="16 digit NIK"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <p id="err_nik" class="text-red-500 text-xs mt-1 hidden"></p>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">No. RM <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">No. RM <span class="text-gray-400 text-xs">(opsional)</span></label>
                     <input type="text" id="rm" placeholder="Nomor Rekam Medis"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <p id="err_rm" class="text-red-500 text-xs mt-1 hidden"></p>
                 </div>
             </div>
+            <p class="text-xs text-amber-600 -mt-1">⚠ NIK atau No. RM wajib diisi salah satu.</p>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
                 <input type="text" id="name" placeholder="Nama lengkap pasien"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <p id="err_name" class="text-red-500 text-xs mt-1 hidden"></p>
             </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir <span class="text-red-500">*</span></label>
-                    <input type="date" id="birth_date"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <p id="err_birth_date" class="text-red-500 text-xs mt-1 hidden"></p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">No. HP <span class="text-red-500">*</span></label>
-                    <input type="text" id="phone" placeholder="08xxxxxxxxxx"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <p id="err_phone" class="text-red-500 text-xs mt-1 hidden"></p>
-                </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">No. HP <span class="text-red-500">*</span></label>
+                <input type="text" id="phone" placeholder="08xxxxxxxxxx"
+                    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <p id="err_phone" class="text-red-500 text-xs mt-1 hidden"></p>
             </div>
             <div id="statusFieldPatient" class="hidden">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
@@ -238,10 +230,9 @@ $(document).ready(function () {
         processing: true,
         ajax: { url: '{{ request()->url() }}', headers: { 'Accept': 'application/json' }, dataSrc: 'data' },
         columns: [
-            { data: 'nik' },
-            { data: 'rm' },
+            { data: 'nik',   render: d => d ?? '<span style="color:#9aa0a6;font-size:12px;">—</span>' },
+            { data: 'rm',    render: d => d ?? '<span style="color:#9aa0a6;font-size:12px;">—</span>' },
             { data: 'name' },
-            { data: 'birth_date', render: d => d ? new Date(d).toLocaleDateString('id-ID', {day:'2-digit',month:'short',year:'numeric'}) : '-' },
             { data: 'phone' },
             { data: 'addresses_count', render: d => `<span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">${d} alamat</span>` },
             { data: 'is_active', render: d => d
@@ -383,10 +374,9 @@ function openEditModal(id) {
     $('#patientId').val(id);
     $('#statusFieldPatient').removeClass('hidden');
     $.get(`${BASE_URL}/${id}`, function (p) {
-        $('#nik').val(p.nik);
-        $('#rm').val(p.rm);
+        $('#nik').val(p.nik ?? '');
+        $('#rm').val(p.rm ?? '');
         $('#name').val(p.name);
-        $('#birth_date').val(p.birth_date ? p.birth_date.substring(0, 10) : '');
         $('#phone').val(p.phone);
         $('#is_active').val(p.is_active ? '1' : '0');
         $('#patientModal').removeClass('hidden').addClass('flex');
@@ -401,8 +391,8 @@ function submitPatient() {
     const url = id ? `${BASE_URL}/${id}` : BASE_URL;
     const data = {
         _method: id ? 'PATCH' : 'POST',
-        nik: $('#nik').val(), rm: $('#rm').val(), name: $('#name').val(),
-        birth_date: $('#birth_date').val(), phone: $('#phone').val(), is_active: $('#is_active').val(),
+        nik: $('#nik').val(), rm: $('#rm').val(),
+        name: $('#name').val(), phone: $('#phone').val(), is_active: $('#is_active').val(),
     };
     $('#submitBtn').text('Menyimpan...').prop('disabled', true);
     $.ajax({ url, method: 'POST', data,

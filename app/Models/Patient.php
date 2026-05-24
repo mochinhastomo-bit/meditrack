@@ -11,14 +11,12 @@ class Patient extends Model
         'nik',
         'rm',
         'name',
-        'birth_date',
         'phone',
         'is_active',
     ];
 
     protected $casts = [
-        'birth_date' => 'date',
-        'is_active'  => 'boolean',
+        'is_active' => 'boolean',
     ];
 
     public function addresses(): HasMany

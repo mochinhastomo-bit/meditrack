@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/kurir/orders/history',                 [CourierApiController::class, 'orderHistory']);
     Route::post('/kurir/orders/pickup',                 [CourierApiController::class, 'pickupOrders']);
     Route::post('/kurir/orders/{prescription}/status', [CourierApiController::class, 'updateStatus']);
+    Route::post('/kurir/orders/{prescription}/photo',  [CourierApiController::class, 'uploadPhoto']);
 });
 
 // ── Tracking publik (untuk web, no auth) ────────────────────────────────

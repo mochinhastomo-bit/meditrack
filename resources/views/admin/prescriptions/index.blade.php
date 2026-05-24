@@ -94,16 +94,20 @@
                     <p id="err_patient_address_id" class="form-error hidden"></p>
                 </div>
 
-                {{-- Kurir --}}
+                {{-- Kurir (hanya Admin, karena kurir menentukan sendiri) --}}
+                @if(auth()->user()->isSuperAdmin())
                 <div style="margin-bottom:14px;">
-                    <label class="form-label">Kurir <span style="font-size:12px; color:#80868b; font-weight:400;">(opsional)</span></label>
+                    <label class="form-label">Kurir <span style="font-size:12px; color:#80868b; font-weight:400;">(opsional — kurir bisa pilih sendiri)</span></label>
                     <select id="courier_id" class="form-input">
-                        <option value="">— Belum assign kurir —</option>
+                        <option value="">— Kurir belum memilih —</option>
                         @foreach(\App\Models\Courier::where('is_active', true)->orderBy('name')->get() as $courier)
                             <option value="{{ $courier->id }}">{{ $courier->name }} — {{ $courier->plate_number }}</option>
                         @endforeach
                     </select>
                 </div>
+                @else
+                <input type="hidden" id="courier_id" value="">
+                @endif
 
                 {{-- Status (hanya saat edit) --}}
                 <div id="statusField" style="margin-bottom:14px;" class="hidden">

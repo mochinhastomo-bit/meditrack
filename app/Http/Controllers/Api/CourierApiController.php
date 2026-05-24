@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Courier;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourierApiController extends Controller
 {
     /**
-     * Daftar resep yang ditugaskan ke kurir yang login.
-     * Hanya yang aktif dan statusnya bukan terkirim/dibatalkan.
+     * Daftar resep untuk kurir:
+     * - Semua siap_kirim yang belum diambil kurir manapun (courier_id NULL)
+     * - Resep milik kurir ini (dibawa / dalam_pengiriman)
      */
     public function myOrders(Request $request)
     {
@@ -22,9 +23,15 @@ class CourierApiController extends Controller
         }
 
         $orders = Prescription::with(['patient', 'address'])
-            ->where('courier_id', $courier->id)
             ->where('is_active', true)
-            ->whereNotIn('status', ['terkirim', 'dibatalkan'])
+            ->where(function ($q) use ($courier) {
+                // Resep tersedia (belum diambil siapapun)
+                $q->where(fn($q2) => $q2->where('status', 'siap_kirim')->whereNull('courier_id'))
+                  // Resep milik kurir ini yang sedang diproses
+                  ->orWhere(fn($q2) => $q2->where('courier_id', $courier->id)
+                                          ->whereIn('status', ['dibawa', 'dalam_pengiriman']));
+            })
+            ->orderByRaw("FIELD(status, 'dalam_pengiriman', 'dibawa', 'siap_kirim')")
             ->orderBy('tanggal')
             ->get()
             ->map(fn($p) => $this->formatOrder($p));
@@ -117,8 +124,9 @@ class CourierApiController extends Controller
     }
 
     /**
-     * Ambil beberapa resep sekaligus dari RS (batch pickup).
-     * Mengubah status siap_kirim → dibawa untuk resep yang dipilih.
+     * Kurir ambil resep dari RS (batch pickup).
+     * - Set courier_id ke kurir yang login
+     * - Ubah status siap_kirim → dibawa
      */
     public function pickupOrders(Request $request)
     {
@@ -134,15 +142,18 @@ class CourierApiController extends Controller
         }
 
         $prescriptions = Prescription::whereIn('id', $request->order_ids)
-            ->where('courier_id', $courier->id)
             ->where('status', 'siap_kirim')
+            ->whereNull('courier_id')   // hanya yang belum diambil
             ->get();
 
         if ($prescriptions->isEmpty()) {
             return response()->json(['message' => 'Tidak ada resep yang valid untuk diambil.'], 422);
         }
 
-        $prescriptions->each->update(['status' => 'dibawa']);
+        $prescriptions->each->update([
+            'courier_id' => $courier->id,
+            'status'     => 'dibawa',
+        ]);
 
         return response()->json([
             'message' => "{$prescriptions->count()} resep berhasil diambil.",
@@ -152,14 +163,15 @@ class CourierApiController extends Controller
 
     /**
      * Update status resep oleh kurir.
-     * Transisi yang diizinkan:
-     *   siap_kirim       → dibawa (via pickupOrders)
-     *   dibawa           → dalam_pengiriman (hanya jika tidak ada yang aktif)
-     *   dalam_pengiriman → terkirim
      */
     public function updateStatus(Request $request, Prescription $prescription)
     {
         $courier = $request->user()->courier;
+
+        // Untuk siap_kirim (belum ada courier): set courier_id dulu
+        if ($prescription->status === 'siap_kirim' && is_null($prescription->courier_id)) {
+            $prescription->update(['courier_id' => $courier->id]);
+        }
 
         if (! $courier || $prescription->courier_id !== $courier->id) {
             return response()->json(['message' => 'Tidak memiliki akses ke resep ini.'], 403);
@@ -182,7 +194,6 @@ class CourierApiController extends Controller
 
         $newStatus = $allowed[$current];
 
-        // Pastikan tidak ada pengiriman aktif lain sebelum mulai antar
         if ($newStatus === 'dalam_pengiriman') {
             $activeExists = Prescription::where('courier_id', $courier->id)
                 ->where('status', 'dalam_pengiriman')
@@ -206,21 +217,55 @@ class CourierApiController extends Controller
         ]);
     }
 
+    /**
+     * Upload foto bukti pengiriman saat tiba di lokasi pasien.
+     */
+    public function uploadPhoto(Request $request, Prescription $prescription)
+    {
+        $courier = $request->user()->courier;
+
+        if (! $courier || $prescription->courier_id !== $courier->id) {
+            return response()->json(['message' => 'Tidak memiliki akses ke resep ini.'], 403);
+        }
+
+        if ($prescription->status !== 'dalam_pengiriman') {
+            return response()->json(['message' => 'Foto hanya bisa diupload saat status dalam pengiriman.'], 422);
+        }
+
+        $request->validate(['photo' => 'required|image|max:5120']); // max 5MB
+
+        // Hapus foto lama jika ada
+        if ($prescription->delivery_photo) {
+            Storage::disk('public')->delete($prescription->delivery_photo);
+        }
+
+        $path = $request->file('photo')->store('delivery-photos', 'public');
+        $prescription->update(['delivery_photo' => $path]);
+
+        return response()->json([
+            'message'   => 'Foto berhasil diupload.',
+            'photo_url' => asset('storage/' . $path),
+        ]);
+    }
+
     // ── Helper ───────────────────────────────────────────────────────────────
     private function formatOrder(Prescription $p): array
     {
         return [
-            'id'           => $p->id,
-            'nomor_resep'  => $p->nomor_resep,
-            'tanggal'      => $p->tanggal->format('Y-m-d'),
-            'status'       => $p->status,
-            'status_label' => $p->status_label,
-            'keterangan'   => $p->keterangan,
-            'patient'      => [
-                'name'  => $p->patient->name ?? '',
+            'id'             => $p->id,
+            'nomor_resep'    => $p->nomor_resep,
+            'tanggal'        => $p->tanggal->format('Y-m-d'),
+            'status'         => $p->status,
+            'status_label'   => $p->status_label,
+            'keterangan'     => $p->keterangan,
+            'delivery_photo' => $p->delivery_photo
+                                    ? asset('storage/' . $p->delivery_photo)
+                                    : null,
+            'patient' => [
+                'name'  => $p->patient->name  ?? '',
                 'phone' => $p->patient->phone ?? '',
             ],
-            'address'      => $p->address ? [
+            'address' => $p->address ? [
                 'label'     => $p->address->label,
                 'address'   => $p->address->address,
                 'latitude'  => $p->address->latitude,

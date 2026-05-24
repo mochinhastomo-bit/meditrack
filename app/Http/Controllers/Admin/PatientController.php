@@ -21,27 +21,36 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nik'        => 'required|digits:16|unique:patients,nik',
-            'rm'         => 'required|string|max:20|unique:patients,rm',
-            'name'       => 'required|string|max:255',
-            'birth_date' => 'required|date',
-            'phone'      => 'required|string|max:20',
+            'nik'   => 'nullable|digits:16|unique:patients,nik',
+            'rm'    => 'nullable|string|max:20|unique:patients,rm',
+            'name'  => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
         ], [
-            'nik.required'        => 'NIK wajib diisi.',
-            'nik.digits'          => 'NIK harus 16 digit.',
-            'nik.unique'          => 'NIK sudah terdaftar.',
-            'rm.required'         => 'Nomor RM wajib diisi.',
-            'rm.unique'           => 'Nomor RM sudah terdaftar.',
-            'name.required'       => 'Nama wajib diisi.',
-            'birth_date.required' => 'Tanggal lahir wajib diisi.',
-            'phone.required'      => 'Nomor HP wajib diisi.',
+            'nik.digits'  => 'NIK harus 16 digit.',
+            'nik.unique'  => 'NIK sudah terdaftar.',
+            'rm.unique'   => 'Nomor RM sudah terdaftar.',
+            'name.required'  => 'Nama wajib diisi.',
+            'phone.required' => 'Nomor HP wajib diisi.',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $patient = Patient::create($request->only('nik', 'rm', 'name', 'birth_date', 'phone') + ['is_active' => true]);
+        // Minimal salah satu NIK atau RM harus diisi
+        if (empty($request->nik) && empty($request->rm)) {
+            return response()->json([
+                'errors' => ['nik' => ['NIK atau No. RM wajib diisi salah satu.']]
+            ], 422);
+        }
+
+        $patient = Patient::create([
+            'nik'       => $request->nik ?: null,
+            'rm'        => $request->rm  ?: null,
+            'name'      => $request->name,
+            'phone'     => $request->phone,
+            'is_active' => true,
+        ]);
 
         return response()->json(['success' => true, 'message' => 'Pasien berhasil ditambahkan.', 'patient' => $patient]);
     }
@@ -54,28 +63,33 @@ class PatientController extends Controller
     public function update(Request $request, Patient $patient)
     {
         $validator = Validator::make($request->all(), [
-            'nik'        => 'required|digits:16|unique:patients,nik,' . $patient->id,
-            'rm'         => 'required|string|max:20|unique:patients,rm,' . $patient->id,
-            'name'       => 'required|string|max:255',
-            'birth_date' => 'required|date',
-            'phone'      => 'required|string|max:20',
+            'nik'   => 'nullable|digits:16|unique:patients,nik,' . $patient->id,
+            'rm'    => 'nullable|string|max:20|unique:patients,rm,' . $patient->id,
+            'name'  => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
         ], [
-            'nik.required'        => 'NIK wajib diisi.',
-            'nik.digits'          => 'NIK harus 16 digit.',
-            'nik.unique'          => 'NIK sudah terdaftar.',
-            'rm.required'         => 'Nomor RM wajib diisi.',
-            'rm.unique'           => 'Nomor RM sudah terdaftar.',
-            'name.required'       => 'Nama wajib diisi.',
-            'birth_date.required' => 'Tanggal lahir wajib diisi.',
-            'phone.required'      => 'Nomor HP wajib diisi.',
+            'nik.digits' => 'NIK harus 16 digit.',
+            'nik.unique' => 'NIK sudah terdaftar.',
+            'rm.unique'  => 'Nomor RM sudah terdaftar.',
+            'name.required'  => 'Nama wajib diisi.',
+            'phone.required' => 'Nomor HP wajib diisi.',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
+        if (empty($request->nik) && empty($request->rm)) {
+            return response()->json([
+                'errors' => ['nik' => ['NIK atau No. RM wajib diisi salah satu.']]
+            ], 422);
+        }
+
         $patient->update([
-            ...$request->only('nik', 'rm', 'name', 'birth_date', 'phone'),
+            'nik'       => $request->nik ?: null,
+            'rm'        => $request->rm  ?: null,
+            'name'      => $request->name,
+            'phone'     => $request->phone,
             'is_active' => $request->boolean('is_active'),
         ]);
 
