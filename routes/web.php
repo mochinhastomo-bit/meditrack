@@ -26,8 +26,8 @@ Route::middleware(['auth', 'role:superadmin'])->prefix('admin')->name('admin.')-
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('users', UserController::class)->except(['create', 'edit']);
-    Route::resource('couriers', CourierController::class)->except(['create', 'edit']);
     Route::get('couriers/available-users', [CourierController::class, 'availableUsers'])->name('couriers.available-users');
+    Route::resource('couriers', CourierController::class)->except(['create', 'edit']);
 
     Route::resource('patients', PatientController::class)->except(['create', 'edit']);
     Route::resource('patients.addresses', PatientAddressController::class)->except(['create', 'edit']);
@@ -63,8 +63,8 @@ Route::middleware(['auth', 'role:farmasi'])->prefix('farmasi')->name('farmasi.')
     Route::resource('patients', PatientController::class)->except(['create', 'edit']);
     Route::resource('patients.addresses', PatientAddressController::class)->except(['create', 'edit']);
 
-    Route::resource('couriers', CourierController::class)->except(['create', 'edit']);
     Route::get('couriers/available-users', [CourierController::class, 'availableUsers'])->name('couriers.available-users');
+    Route::resource('couriers', CourierController::class)->except(['create', 'edit']);
 });
 
 // ===== PROFILE =====
