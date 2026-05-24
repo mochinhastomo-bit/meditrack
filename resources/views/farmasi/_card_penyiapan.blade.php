@@ -12,5 +12,5 @@
 </div>
 <button class="btn-serahkan" onclick="serahkanKurir({{ $p->id }})">
     <span class="material-icons" style="font-size:15px;">local_shipping</span>
-    Serahkan ke Kurir
+    Siap Kirim
 </button>

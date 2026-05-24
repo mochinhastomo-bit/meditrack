@@ -28,6 +28,6 @@
     @endif
     <button class="btn-serahkan" onclick="event.stopPropagation(); serahkanKurir({{ $p->id }})">
         <span class="material-icons" style="font-size:14px;">local_shipping</span>
-        Serahkan ke Kurir
+        Siap Kirim
     </button>
 </div>

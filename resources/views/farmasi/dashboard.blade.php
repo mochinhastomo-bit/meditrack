@@ -626,7 +626,7 @@ function buildPenyiapanCard(p) {
             </div>` : ''}
             <button class="btn-serahkan" onclick="event.stopPropagation(); serahkanKurir(${p.id})">
                 <span class="material-icons" style="font-size:14px;">local_shipping</span>
-                Serahkan ke Kurir
+                Siap Kirim
             </button>
         </div>`;
     return div;
@@ -886,7 +886,7 @@ function serahkanKurir(id) {
         error(xhr) {
             isPaused = false;
             toastr.error(xhr.responseJSON?.message ?? 'Gagal.', 'Error');
-            if (btn) { btn.disabled = false; btn.innerHTML = '<span class="material-icons" style="font-size:14px;">local_shipping</span> Serahkan ke Kurir'; }
+            if (btn) { btn.disabled = false; btn.innerHTML = '<span class="material-icons" style="font-size:14px;">local_shipping</span> Siap Kirim'; }
         }
     });
 }
