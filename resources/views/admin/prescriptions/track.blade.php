@@ -75,9 +75,10 @@
 
 {{-- ── Progress Status ─────────────────────────────────────────────────── --}}
 @php
-$steps  = ['penyiapan','siap_kirim','dalam_pengiriman','terkirim'];
-$labels = ['Penyiapan','Siap Kirim','Dalam Pengiriman','Terkirim'];
+$steps  = ['penyiapan','siap_kirim','dibawa','dalam_pengiriman','terkirim'];
+$labels = ['Penyiapan','Siap Kirim','Dibawa Kurir','Dalam Pengiriman','Terkirim'];
 $curIdx = array_search($prescription->status, $steps);
+if ($curIdx === false) $curIdx = -1;
 if ($prescription->status === 'dibatalkan') $curIdx = -1;
 @endphp
 
@@ -283,6 +284,26 @@ if ($prescription->status === 'dibatalkan') $curIdx = -1;
                 {{ $prescription->status_label }}
             </span>
         </div>
+
+        {{-- Foto Bukti Pengiriman --}}
+        @if($prescription->delivery_photo)
+        <div class="card" style="padding:16px;">
+            <div style="font-size:13px;font-weight:500;color:#202124;margin-bottom:12px;display:flex;align-items:center;gap:6px;">
+                <span class="material-icons" style="font-size:16px;color:#137333;">photo_camera</span>
+                Foto Bukti Pengiriman
+            </div>
+            <a href="{{ asset('storage/' . $prescription->delivery_photo) }}" target="_blank">
+                <img src="{{ asset('storage/' . $prescription->delivery_photo) }}"
+                    alt="Foto Bukti Pengiriman"
+                    style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;cursor:zoom-in;border:1px solid #e0e0e0;">
+            </a>
+            <div style="font-size:11px;color:#5f6368;margin-top:8px;text-align:center;">
+                <span class="material-icons" style="font-size:12px;vertical-align:-2px;">info</span>
+                Foto diambil saat kurir tiba di lokasi pasien
+            </div>
+        </div>
+        @endif
+
     </div>
 </div>
 

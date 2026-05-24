@@ -160,6 +160,34 @@
     </div>
 </div>
 
+{{-- ===== MODAL FOTO BUKTI ===== --}}
+<div id="photoModal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+    <div class="absolute inset-0 modal-overlay" onclick="closePhotoModal()"></div>
+    <div class="modal-card relative w-full max-w-lg mx-4 z-10" style="overflow:hidden;">
+        <div class="modal-header">
+            <h3 id="photoModalTitle" style="display:flex;align-items:center;gap:6px;">
+                <span class="material-icons" style="font-size:18px;color:#1a73e8;">photo_camera</span>
+                Foto Bukti Pengiriman
+            </h3>
+            <button onclick="closePhotoModal()" class="modal-close">&times;</button>
+        </div>
+        <div style="padding:0;background:#000;text-align:center;max-height:60vh;overflow:hidden;">
+            <img id="photoModalImg" src="" alt="Foto Bukti Pengiriman"
+                style="max-width:100%;max-height:60vh;object-fit:contain;display:block;margin:0 auto;">
+        </div>
+        <div class="modal-footer" style="justify-content:space-between;align-items:center;">
+            <span id="photoModalNomor" style="font-size:12px;color:#5f6368;font-family:monospace;"></span>
+            <div style="display:flex;gap:8px;">
+                <a id="photoModalDownload" href="#" download target="_blank" class="btn-secondary" style="text-decoration:none;">
+                    <span class="material-icons" style="font-size:15px;vertical-align:-3px;">download</span>
+                    Unduh
+                </a>
+                <button onclick="closePhotoModal()" class="btn-secondary">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -227,6 +255,12 @@ $(document).ready(function () {
                     btns += ` <a href="/admin/prescriptions/${row.id}/track" class="table-action green" style="margin-left:4px;text-decoration:none;">
                         <span class="material-icons" style="font-size:14px;vertical-align:-3px;">location_on</span>Track</a>`;
                 }
+
+                if (row.delivery_photo) {
+                    btns += ` <button onclick="viewPhoto('${row.delivery_photo}', '${row.nomor_resep}')" class="table-action" style="margin-left:4px;background:#e8f0fe;color:#1a73e8;border:1px solid #c5d9f7;">
+                        <span class="material-icons" style="font-size:14px;vertical-align:-3px;">photo_camera</span>Foto</button>`;
+                }
+
                 return btns;
               } }
         ],
@@ -370,6 +404,18 @@ function confirmDelete() {
 // ===== HELPERS =====
 function resetForm()   { $('#prescriptionForm')[0].reset(); $('#prescriptionId').val(''); clearErrors(); }
 function clearErrors() { $('[id^="err_"]').addClass('hidden').text(''); }
-$(document).keydown(e => { if (e.key === 'Escape') { closeModal(); closeDeleteModal(); } });
+$(document).keydown(e => { if (e.key === 'Escape') { closeModal(); closeDeleteModal(); closePhotoModal(); } });
+
+// ===== FOTO BUKTI =====
+function viewPhoto(url, nomor) {
+    $('#photoModalImg').attr('src', url);
+    $('#photoModalNomor').text(nomor);
+    $('#photoModalDownload').attr('href', url);
+    $('#photoModal').removeClass('hidden').addClass('flex');
+}
+function closePhotoModal() {
+    $('#photoModal').addClass('hidden').removeClass('flex');
+    $('#photoModalImg').attr('src', '');
+}
 </script>
 @endpush

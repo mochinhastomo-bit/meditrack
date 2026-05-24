@@ -32,7 +32,10 @@ class PrescriptionController extends Controller
                     'status'       => $p->status,
                     'status_label' => $p->status_label,
                     'status_color' => $p->status_color,
-                    'is_active'    => $p->is_active,
+                    'is_active'      => $p->is_active,
+                    'delivery_photo' => $p->delivery_photo
+                                          ? asset('storage/' . $p->delivery_photo)
+                                          : null,
                 ]);
 
             return response()->json(['data' => $prescriptions]);
